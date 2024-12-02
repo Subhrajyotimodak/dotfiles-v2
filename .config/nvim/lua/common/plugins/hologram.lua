@@ -1,0 +1,2 @@
+require("hologram").setup({
+})
