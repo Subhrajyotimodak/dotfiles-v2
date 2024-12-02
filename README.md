@@ -1,7 +1,7 @@
 # 🌈 My Dotfiles 
 
-![GitHub last commit](https://img.shields.io/github/last-commit/Subhrajyotimodak/dotfiles_v2?style=flat-square)
-![GitHub repo size](https://img.shields.io/github/repo-size/Subhrajyotimodak/dotfiles_v2?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/Subhrajyotimodak/dotfiles-v2?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/Subhrajyotimodak/dotfiles-v2?style=flat-square)
 ![Maintained](https://img.shields.io/maintenance/yes/2025?style=flat-square)
 
 ## 🚀 Quick Overview
