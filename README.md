@@ -26,7 +26,7 @@ Welcome to my personal dotfiles repository! This collection represents my carefu
 ### Automatic Install
 ```bash
 brew install stow
-git clone https://github.com/yourusername/dotfiles.git ~/.dotfiles
+git clone https://github.com/Subhrajyotimodak/dotfiles-v2.git ~/.dotfiles
 cd ~/.dotfiles
 stow .
 ```
