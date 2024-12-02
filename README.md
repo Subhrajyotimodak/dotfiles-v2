@@ -1,8 +1,8 @@
 # 🌈 My Dotfiles 
 
-![GitHub last commit](https://img.shields.io/github/last-commit/Subhrajyotimodak/dotfiles?style=flat-square)
-![GitHub repo size](https://img.shields.io/github/repo-size/Subhrajyotimodak/dotfiles?style=flat-square)
-![Maintained](https://img.shields.io/maintenance/yes/2024?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/Subhrajyotimodak/dotfiles_v2?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/Subhrajyotimodak/dotfiles_v2?style=flat-square)
+![Maintained](https://img.shields.io/maintenance/yes/2025?style=flat-square)
 
 ## 🚀 Quick Overview
 
@@ -49,4 +49,4 @@ And even if I don't accept the PR, I'll definitely add them below as a list:
 
 ---
 
-**Made with ❤️ and ☕ by [Subhrajyoti Modak](https://github.com/subhrajyotimodak)** *
+**Made with ❤️ and ☕ by [Subhrajyoti Modak](https://github.com/subhrajyotimodak)**
