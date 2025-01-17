@@ -123,7 +123,6 @@ export EDITOR=nvim
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-task
 test -e /Users/subhrajyotimodak/.iterm2_shell_integration.zsh && source /Users/subhrajyotimodak/.iterm2_shell_integration.zsh || true
 
 export NVM_DIR="$HOME/.nvm"
@@ -192,3 +191,24 @@ bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
 alias ls="eza --icons=always"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/subhrajyotimodak/.cache/lm-studio/bin"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/subhrajyotimodak/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/subhrajyotimodak/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/subhrajyotimodak/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/subhrajyotimodak/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH="/opt/homebrew/opt/icu4c@76/bin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c@76/sbin:$PATH"

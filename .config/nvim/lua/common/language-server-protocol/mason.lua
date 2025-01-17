@@ -8,6 +8,7 @@ local lsp_servers = {
 	"pyright",
 	"svelte",
 	"clangd",
+	"zls"
 }
 
 -- import mason plugin safely
