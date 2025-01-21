@@ -1,0 +1,14 @@
+
+# Colorscheme
+theme = catppuccin-mocha
+
+# Nerd Fonts
+font-family="JetBrainsMono Nerd Font Propo"
+font-style="Bold"
+
+# Cursor
+cursor-style="block_hollow"
+cursor-style-blink=false
+cursor-invert-fg-bg=true
+
+

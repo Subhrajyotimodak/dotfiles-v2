@@ -11,20 +11,10 @@ if not actions_setup then
 	return
 end
 
-telescope.load_extension("media_files")
 
 -- configure telescope
 telescope.setup({
 	-- configure custom mappings
-	extensions = {
-		media_files = {
-			-- filetypes whitelist
-			-- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-			filetypes = { "png", "webp", "jpg", "jpeg" },
-			-- find command (defaults to `fd`)
-			find_cmd = "rg",
-		},
-	},
 	defaults = {
 		mappings = {
 			i = {
@@ -36,4 +26,5 @@ telescope.setup({
 	},
 })
 
+telescope.load_extension("media_files")
 --[[ telescope.load_extension("fzf") ]]

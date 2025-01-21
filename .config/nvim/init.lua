@@ -29,6 +29,3 @@ require("common.language-server-protocol.lspsaga")
 require("common.language-server-protocol.guard")
 
 require("common.plugins.codeium");
-
---[[ total paid in GST: 50927 ]]
---[[ total paid to WITCORP ]]
