@@ -94,7 +94,6 @@ local packer_install = function(use)
 		"nvimdev/lspsaga.nvim",
 		branch = "main"
 	}) -- enhanced lsp uis
-	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
 	-- treesitter configuration
@@ -138,6 +137,7 @@ local packer_install = function(use)
 	----------------
 
 	use("JoosepAlviste/nvim-ts-context-commentstring")
+	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 
 	----------------------
 	-- Dart and Flutter --

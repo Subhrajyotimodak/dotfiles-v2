@@ -1,6 +1,6 @@
 -- import lspconfig plugin safely
 local servers = require("common.language-server-protocol.servers")
--- local typescript = require("common.language-server-protocol.servers.typescript")
+local typescript = require("common.language-server-protocol.servers.typescript")
 local flutter = require("common.language-server-protocol.servers.flutter")
 
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
@@ -59,5 +59,5 @@ for key, value in pairs(servers(capabilities, on_attach)) do
 	lspconfig[key].setup(value)
 end
 
--- typescript(capabilities, on_attach)
+typescript(capabilities, on_attach)
 flutter(capabilities, on_attach)
