@@ -5,16 +5,16 @@ if not ft_status_ok then
 	return
 end
 
-local guard_status_ok, guard = pcall(require, "guard")
-if not guard_status_ok then
-	vim.notify("guard is not installed :(")
-	return
-end
+-- local guard_status_ok, guard = pcall(require, "guard")
+-- if not guard_status_ok then
+-- 	vim.notify("guard is not installed :(")
+-- 	return
+-- end
 
 ft("lua"):fmt("lsp"):append("stylua")
 
 ft("typescript,javascript,typescriptreact,svelte,css"):fmt("prettier")
-	--[[ :lint("eslint_d") ]]
+--[[ :lint("eslint_d") ]]
 
 ft("python"):fmt("black")
 
@@ -37,10 +37,10 @@ ft("json,markdown"):fmt("prettier"):lint({
 	end,
 })
 
-guard.setup({
+vim.g.guard_config = {
 	-- the only options for the setup function
 
 	fmt_on_save = false,
 	-- Use lsp if no formatter was defined for this filetype
 	lsp_as_default_formatter = false,
-})
+}

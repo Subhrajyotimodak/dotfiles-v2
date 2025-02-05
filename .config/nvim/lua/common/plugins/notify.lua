@@ -9,6 +9,7 @@ local config = {
 	fps = 120,
 	max_width = 60,
 	render = "wrapped-compact",
+	background_colour = "#282a36",
 	on_open = function(win)
 		--[[ vim.api.nvim_win_set_config(win, { zindex = 175 }) ]]
 		--[[ if not vim.g.ui_notifications_enabled then ]]

@@ -1,5 +1,5 @@
 local lsp_servers = {
-	"tsserver",
+	"ts_ls",
 	"html",
 	"cssls",
 	"tailwindcss",

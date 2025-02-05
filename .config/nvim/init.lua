@@ -19,7 +19,7 @@ require("common.plugins.alpha")
 require("common.plugins.project")
 require("common.plugins.gitsigns")
 require("common.plugins.indentation-line")
---[[ require("common.plugins.symbol-outline") ]]
+-- require("common.plugins.symbol-outline") 
 require("common.plugins.dressing")
 require("common.plugins.hologram")
 
@@ -28,4 +28,4 @@ require("common.language-server-protocol.lspconfig")
 require("common.language-server-protocol.lspsaga")
 require("common.language-server-protocol.guard")
 
-require("common.plugins.codeium");
+-- require("common.plugins.codeium");

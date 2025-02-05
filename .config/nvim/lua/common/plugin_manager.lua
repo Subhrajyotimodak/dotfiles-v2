@@ -63,7 +63,8 @@ local packer_install = function(use)
 	use("hrsh7th/nvim-cmp") -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
 	use("hrsh7th/cmp-path") -- source for file system paths
-	use({ "Exafunction/codeium.vim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
+	use("yetone/avante.nvim")
+	-- use({ "Exafunction/codeium.vim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") -- snippet engine
@@ -91,8 +92,7 @@ local packer_install = function(use)
 	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
 	use({
 		"nvimdev/lspsaga.nvim",
-		branch = "main",
-		after = "nvim-lspconfig",
+		branch = "main"
 	}) -- enhanced lsp uis
 	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion

@@ -1,6 +1,6 @@
 -- import lspconfig plugin safely
 local servers = require("common.language-server-protocol.servers")
-local typescript = require("common.language-server-protocol.servers.typescript")
+-- local typescript = require("common.language-server-protocol.servers.typescript")
 local flutter = require("common.language-server-protocol.servers.flutter")
 
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
@@ -37,7 +37,7 @@ local on_attach = function(client, bufnr)
 	keymap.set("n", "<leader>q", "<cmd>Lspsaga show_buf_diagnostics ++normal<CR>", opts)
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
-	if client.name == "tsserver" then
+	if client.name == "ts_ls" then
 		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
 		keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
 		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
@@ -59,83 +59,5 @@ for key, value in pairs(servers(capabilities, on_attach)) do
 	lspconfig[key].setup(value)
 end
 
-typescript(capabilities, on_attach)
+-- typescript(capabilities, on_attach)
 flutter(capabilities, on_attach)
-
--- configure html server
---[[ lspconfig["html"].setup({ ]]
---[[ 	capabilities = capabilities, ]]
---[[ 	on_attach = on_attach, ]]
---[[ }) ]]
-
--- configure svelte server
---[[ lspconfig["svelte"].setup({ ]]
---[[ 	capabilities = capabilities, ]]
---[[ 	on_attach = on_attach, ]]
---[[ 	filetypes = { "svelte", "html" }, ]]
---[[ }) ]]
-
--- json ls
---[[ lspconfig["jsonls"].setup({ ]]
---[[ 	capabilities = capabilities, ]]
---[[ 	on_attach = on_attach, ]]
---[[ }) ]]
-
--- configure typescript server with plugin
-
--- configure css server
---[[ lspconfig["cssls"].setup({ ]]
---[[ 	capabilities = capabilities, ]]
---[[ 	on_attach = on_attach, ]]
---[[ }) ]]
-
---[[ lspconfig["clangd"].setup({ ]]
---[[ 	capabilities = capabilities, ]]
---[[ 	on_attach = on_attach, ]]
---[[ }) ]]
-
--- configure go server
---[[ lspconfig["gopls"].setup({ ]]
---[[ 	capabilities = capabilities, ]]
---[[ 	on_attach = on_attach, ]]
---[[ }) ]]
-
--- configure python server
---[[ lspconfig["pyright"].setup({ ]]
---[[ 	capabilities = capabilities, ]]
---[[ 	on_attach = on_attach, ]]
---[[ }) ]]
-
--- configure tailwindcss server
---[[ lspconfig["tailwindcss"].setup({ ]]
---[[ 	capabilities = capabilities, ]]
---[[ 	on_attach = on_attach, ]]
---[[ }) ]]
-
--- configure emmet language server
---[[ lspconfig["emmet_ls"].setup({ ]]
---[[ 	capabilities = capabilities, ]]
---[[ 	on_attach = on_attach, ]]
---[[ 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" }, ]]
---[[ }) ]]
-
--- configure lua server (with special settings)
---[[ lspconfig["lua_ls"].setup({ ]]
---[[ 	capabilities = capabilities, ]]
---[[ 	on_attach = on_attach, ]]
---[[ 	settings = { -- custom settings for lua ]]
---[[ 		Lua = { ]]
---[[ 			-- make the language server recognize "vim" global ]]
---[[ 			diagnostics = { ]]
---[[ 				globals = { "vim" }, ]]
---[[ 			}, ]]
---[[ 			workspace = { ]]
---[[ 				-- make language server aware of runtime files ]]
---[[ 				library = { ]]
---[[ 					[vim.fn.expand("$VIMRUNTIME/lua")] = true, ]]
---[[ 					[vim.fn.stdpath("config") .. "/lua"] = true, ]]
---[[ 				}, ]]
---[[ 			}, ]]
---[[ 		}, ]]
---[[ 	}, ]]
---[[ }) ]]
