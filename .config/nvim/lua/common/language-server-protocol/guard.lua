@@ -20,7 +20,7 @@ ft("python"):fmt("black")
 
 ft("html,htmldjango,svelte"):fmt("prettier")
 
-ft("json,markdown"):fmt("prettier"):lint({
+ft("json"):fmt("prettier"):lint({
 	cmd = "misspell",
 	stdin = true,
 	parse = function(result, bufnr)

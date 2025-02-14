@@ -30,4 +30,7 @@ saga.setup({
 	finder = {
 		layout = "normal",
 	},
+	symbols_in_winbar = {
+		enable = false,
+	},
 })

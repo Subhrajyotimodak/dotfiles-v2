@@ -1,7 +1,7 @@
 -- import lspconfig plugin safely
 local servers = require("common.language-server-protocol.servers")
-local typescript = require("common.language-server-protocol.servers.typescript")
 local flutter = require("common.language-server-protocol.servers.flutter")
+local keymaps = require("common.language-server-protocol.keymaps")
 
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status then
@@ -16,25 +16,14 @@ if not cmp_nvim_lsp_status then
 	return
 end
 
+-- enable keybinds only for when lsp server available
 local keymap = vim.keymap -- for conciseness
 
--- enable keybinds only for when lsp server available
 local on_attach = function(client, bufnr)
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	-- set keybinds
-	keymap.set("n", "gf", "<cmd>Lspsaga finder<CR>", opts) -- show definition, references
-	keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts) -- see definition and make edits in window
-	keymap.set("n", "gi", "<cmd>Lspsaga finder imp<CR>", opts) -- go to implementation
-	keymap.set("n", "<leader>t", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
-	keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
-	keymap.set("n", "<leader>x", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
-	keymap.set("n", "<leader>k", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-	keymap.set("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts) -- see outline on right hand side
-	keymap.set("n", "<leader>q", "<cmd>Lspsaga show_buf_diagnostics ++normal<CR>", opts)
+	keymaps(opts)
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
 	if client.name == "ts_ls" then
@@ -59,5 +48,4 @@ for key, value in pairs(servers(capabilities, on_attach)) do
 	lspconfig[key].setup(value)
 end
 
-typescript(capabilities, on_attach)
 flutter(capabilities, on_attach)

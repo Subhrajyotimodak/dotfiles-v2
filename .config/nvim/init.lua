@@ -25,7 +25,7 @@ require("common.plugins.hologram")
 
 require("common.language-server-protocol.mason")
 require("common.language-server-protocol.lspconfig")
-require("common.language-server-protocol.lspsaga")
+-- require("common.language-server-protocol.lspsaga")
 require("common.language-server-protocol.guard")
 
 -- require("common.plugins.codeium");
