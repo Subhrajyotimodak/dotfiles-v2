@@ -37,6 +37,23 @@ ft("json"):fmt("prettier"):lint({
 	end,
 })
 
+ft("md,mdx"):fmt("prettier"):lint({
+	cmd = "misspell",
+	stdin = true,
+	parse = function(result, bufnr)
+		local diags = {}
+		local t = vim.split(result, "\n")
+		for i, e in ipairs(t) do
+			vim.notify(i .. " " .. e)
+			local lnum = e:match("^%d+")
+			if lnum then
+				diags[#diags + 1] = lint.diag_fmt(bufnr, tonumber(lnum) - 1, 0, t[i + 1]:gsub("\t", ""), 2, "misspell")
+			end
+		end
+		return diags
+	end,
+})
+
 vim.g.guard_config = {
 	-- the only options for the setup function
 

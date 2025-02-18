@@ -1,16 +1,9 @@
-local lsp_servers = {
-	"ts_ls",
-	-- "tsserver",
-	"html",
-	"cssls",
-	"tailwindcss",
-	"lua_ls",
-	"emmet_ls",
-	"pyright",
-	"svelte",
-	"clangd",
-	"zls"
-}
+local servers = require("common.language-server-protocol.servers")
+local lsp_servers = {}
+
+for key, _ in pairs(servers({}, {})) do
+	table.insert(lsp_servers, key)
+end
 
 -- import mason plugin safely
 local mason_status, mason = pcall(require, "mason")
