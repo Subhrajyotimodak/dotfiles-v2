@@ -1,6 +1,7 @@
 -- import lspconfig plugin safely
 local servers = require("common.language-server-protocol.servers")
 local flutter = require("common.language-server-protocol.servers.flutter")
+local tailwindcss = require("common.language-server-protocol.servers.tailwindcss")
 local keymaps = require("common.language-server-protocol.keymaps")
 
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
@@ -37,7 +38,6 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
--- (not in youtube nvim video)
 local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
@@ -49,3 +49,4 @@ for key, value in pairs(servers(capabilities, on_attach)) do
 end
 
 flutter(capabilities, on_attach)
+tailwindcss(capabilities, on_attach)

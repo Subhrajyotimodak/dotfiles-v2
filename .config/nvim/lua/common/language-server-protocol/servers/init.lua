@@ -5,7 +5,7 @@ local marksman = require("common.language-server-protocol.servers.marksman")
 local svelte = require("common.language-server-protocol.servers.svelte")
 local typescript = require("common.language-server-protocol.servers.typescript")
 local mdx_analyzer = require("common.language-server-protocol.servers.mdx_analyzer")
-local tailwindcss = require("common.language-server-protocol.servers.tailwindcss")
+local tailwindcss_mason = require("common.language-server-protocol.servers.tailwindcss_mason")
 
 return function(capabilities, on_attach)
 	return {
@@ -15,7 +15,7 @@ return function(capabilities, on_attach)
 		clangd = common(capabilities, on_attach),
 		gopls = common(capabilities, on_attach),
 		pyright = common(capabilities, on_attach),
-		tailwindcss = tailwindcss(capabilities, on_attach),
+		tailwindcss = tailwindcss_mason(capabilities, on_attach),
 		emmet_ls = emmet_ls(capabilities, on_attach),
 		lua_ls = lua_ls(capabilities, on_attach),
 		marksman = marksman(capabilities, on_attach),

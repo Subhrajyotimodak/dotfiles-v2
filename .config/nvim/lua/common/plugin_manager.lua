@@ -154,6 +154,21 @@ local packer_install = function(use)
 	-- Svelte --
 	------------
 	use("evanleck/vim-svelte")
+
+	------------
+	-- TailwindCSS --
+	------------
+	use({
+		"luckasRanarison/tailwind-tools.nvim",
+		requires = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-telescope/telescope.nvim", -- optional
+			"neovim/nvim-lspconfig", -- optional
+		},
+		run = function()
+			vim.cmd(":UpdateRemotePlugins")
+		end,
+	})
 end
 
 -- auto install packer if not installed

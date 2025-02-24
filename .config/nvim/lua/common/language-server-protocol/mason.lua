@@ -1,18 +1,19 @@
 local servers = require("common.language-server-protocol.servers")
 local lsp_servers = {
-	"html",
-	"jsonls",
-	"cssls",
-	"clangd",
-	"gopls",
-	"pyright",
-	"tailwindcss",
-	"emmet_ls",
-	"lua_ls",
-	"marksman",
-	"svelte",
-	"ts_ls",
-	"mdx_analyzer",
+		"html",
+		"jsonls",
+		"cssls" ,
+		"clangd",
+		"gopls" ,
+		"pyright" ,
+		"tailwindcss" ,
+		"emmet_ls" ,
+		"lua_ls" ,
+		"marksman" ,
+		"svelte" ,
+		"ts_ls" ,
+		"mdx_analyzer" ,
+
 }
 
 -- for key, _ in pairs(servers({}, {})) do

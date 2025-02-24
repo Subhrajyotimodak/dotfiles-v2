@@ -13,12 +13,10 @@ end
 
 ft("lua"):fmt("lsp"):append("stylua")
 
-ft("typescript,javascript,typescriptreact,svelte,css"):fmt("prettier")
+ft("html,htmldjango,typescript,javascript,typescriptreact,javascriptreact,svelte,css"):fmt("prettier")
 --[[ :lint("eslint_d") ]]
 
 ft("python"):fmt("black")
-
-ft("html,htmldjango,svelte"):fmt("prettier")
 
 ft("json"):fmt("prettier"):lint({
 	cmd = "misspell",
