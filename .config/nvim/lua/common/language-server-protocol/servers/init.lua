@@ -13,14 +13,14 @@ return function(capabilities, on_attach)
 		jsonls = common(capabilities, on_attach),
 		cssls = common(capabilities, on_attach),
 		clangd = common(capabilities, on_attach),
-		gopls = common(capabilities, on_attach),
 		pyright = common(capabilities, on_attach),
 		tailwindcss = tailwindcss(capabilities, on_attach),
 		emmet_ls = emmet_ls(capabilities, on_attach),
 		lua_ls = lua_ls(capabilities, on_attach),
 		marksman = marksman(capabilities, on_attach),
-		svelte = svelte(capabilities, on_attach),
 		ts_ls = typescript(capabilities, on_attach),
 		mdx_analyzer = mdx_analyzer(capabilities, on_attach),
 	}
 end
+
+		-- svelte = svelte(capabilities, on_attach),

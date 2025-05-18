@@ -6,101 +6,7 @@ end
 
 vim.opt.termguicolors = true
 
-local catpuccin_highlights = require("catppuccin.groups.integrations.bufferline").get()
-
-local __hightlights = {
-	fill = {
-		fg = { attribute = "fg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-	},
-	background = {
-		fg = { attribute = "fg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-	},
-
-	-- buffer_selected = {
-	--   fg = {attribute='fg',highlight='#ff0000'},
-	--   bg = {attribute='bg',highlight='#0000ff'},
-	--   gui = 'none'
-	--   },
-	buffer_visible = {
-		fg = { attribute = "fg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-	},
-
-	close_button = {
-		fg = { attribute = "fg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-	},
-	close_button_visible = {
-		fg = { attribute = "fg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-	},
-	-- close_button_selected = {
-	--   fg = {attribute='fg',highlight='TabLineSel'},
-	--   bg ={attribute='bg',highlight='TabLineSel'}
-	--   },
-
-	tab_selected = {
-		fg = { attribute = "fg", highlight = "Normal" },
-		bg = { attribute = "bg", highlight = "Normal" },
-	},
-	tab = {
-		fg = { attribute = "fg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-	},
-	tab_close = {
-		-- fg = {attribute='fg',highlight='LspDiagnosticsDefaultError'},
-		fg = { attribute = "fg", highlight = "TabLineSel" },
-		bg = { attribute = "bg", highlight = "Normal" },
-	},
-
-	duplicate_selected = {
-		fg = { attribute = "fg", highlight = "TabLineSel" },
-		bg = { attribute = "bg", highlight = "TabLineSel" },
-		italic = true,
-	},
-	duplicate_visible = {
-		fg = { attribute = "fg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-		italic = true,
-	},
-	duplicate = {
-		fg = { attribute = "fg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-		italic = true,
-	},
-
-	modified = {
-		fg = { attribute = "fg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-	},
-	modified_selected = {
-		fg = { attribute = "fg", highlight = "Normal" },
-		bg = { attribute = "bg", highlight = "Normal" },
-	},
-	modified_visible = {
-		fg = { attribute = "fg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-	},
-
-	separator = {
-		fg = { attribute = "bg", highlight = "TabLine" },
-		bg = { attribute = "bg", highlight = "TabLine" },
-	},
-	separator_selected = {
-		fg = { attribute = "bg", highlight = "Normal" },
-		bg = { attribute = "bg", highlight = "Normal" },
-	},
-	-- separator_visible = {
-	--   fg = {attribute='bg',highlight='TabLine'},
-	--   bg = {attribute='bg',highlight='TabLine'}
-	--   },
-	indicator_selected = {
-		fg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
-		bg = { attribute = "bg", highlight = "Normal" },
-	},
-}
+local kanagawa_colors = require("kanagawa.colors").setup({ theme = "wave" }).theme
 
 local config = {
 	options = {
@@ -136,9 +42,9 @@ local config = {
 		max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
 		tab_size = 21,
 		diagnostics = "nvim_lsp", -- | "nvim_lsp" | "coc",
-		diagnostics_update_in_insert = false,
 		diagnostics_indicator = function(count, level, diagnostics_dict, context)
-			return "(" .. count .. ")"
+			local icon = level:match("error") and " " or " "
+			return " " .. icon .. count
 		end,
 		-- NOTE: this will be called a lot so don't do any heavy processing here
 		-- custom_filter = function(buf_number)
@@ -156,17 +62,17 @@ local config = {
 		--     return true
 		--   end
 		-- end,
-		offsets = { { filetype = "NeoTree", text = "", padding = 1 } },
+		-- offsets = { { filetype = "NeoTree", text = "", padding = 1 } },
 		color_icons = true,
 		show_buffer_icons = true,
-		show_buffer_close_icons = true,
-		show_close_icon = true,
+		show_buffer_close_icons = false,
+		show_close_icon = false,
 		show_tab_indicators = true,
-		show_duplicate_prefix = true,
+		show_duplicate_prefix = false,
 		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
 		-- can also be a table containing 2 custom separators
 		-- [focused and unfocused]. eg: { '|', '|' }
-		separator_style = "slant", -- | "thick" | "thin" | { 'any', 'any' },
+		separator_style = "thick", -- | "thick" | "thin" | { 'any', 'any' },
 		enforce_regular_tabs = true,
 		always_show_bufferline = true,
 		-- sort_by = 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
@@ -187,8 +93,7 @@ local config = {
 			return icon, hl
 		end,
 	},
-	highlights = catpuccin_highlights,
+	-- highlights = kanagawa_colors,
 }
-
 
 bufferline.setup(config)

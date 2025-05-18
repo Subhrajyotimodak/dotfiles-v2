@@ -1,3 +1,17 @@
+echo '''
+	  █████████       ███  ██████████  █████                         █████      ███████████   
+	 ███░░░░░███     ░░░  ░███░░░░░░█ ░░███                         ░░███      ░░███░░░░░███  
+	░███    ░░░      █████░███     ░  ███████   ████████  █████ ████ ░███ █████ ░███    ░███  
+	░░█████████     ░░███ ░█████████ ░░░███░   ░░███░░███░░███ ░███  ░███░░███  ░██████████   
+	 ░░░░░░░░███     ░███ ░░░░░░░░███  ░███     ░███ ░░░  ░███ ░███  ░██████░   ░███░░░░░███  
+	 ███    ░███     ░███  ███   ░███  ░███ ███ ░███      ░███ ░███  ░███░░███  ░███    ░███  
+	░░█████████      ░███ ░░████████   ░░█████  █████     ░░███████  ████ █████ █████   █████ 
+	 ░░░░░░░░░       ░███  ░░░░░░░░     ░░░░░  ░░░░░       ░░░░░███ ░░░░ ░░░░░ ░░░░░   ░░░░░  
+	             ███ ░███                                  ███ ░███                           
+	            ░░██████                                  ░░██████                            
+	             ░░░░░░                                    ░░░░░░                             
+	'''
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -14,7 +28,7 @@ source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 export ZSH="$HOME/.oh-my-zsh"
 
 # Load secrets
-source ./.zsh_secrets
+source ~/.zsh_secrets
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,

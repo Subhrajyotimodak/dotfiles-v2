@@ -1,3 +1,4 @@
+local util = require("lspconfig.util")
 
 return function(capabilities, on_attach)
 	return {
@@ -7,9 +8,17 @@ return function(capabilities, on_attach)
 			fallback = true, -- fall back to standard LSP definition on failure
 		},
 		server = {
+			root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
 			capabilities = capabilities,
 			on_attach = on_attach,
-			filetypes = { "typescript", "typescriptreact" },
+			filetypes = {
+				"javascript",
+				"javascriptreact",
+				"javascript.jsx",
+				"typescript",
+				"typescriptreact",
+				"typescript.tsx",
+			},
 		},
 	}
 end

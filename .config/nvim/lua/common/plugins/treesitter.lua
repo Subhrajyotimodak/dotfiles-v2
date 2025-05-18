@@ -1,3 +1,4 @@
+-- Error executing lua: ...0.10.4_1/share/nvim/runtime/lua/vim/treesitter/query.lua:252: Query error at 30:4. Invalid node type "always":
 -- import nvim-treesitter plugin safely
 local status, treesitter = pcall(require, "nvim-treesitter.configs")
 if not status then
@@ -9,7 +10,7 @@ end
 treesitter.setup({
 	-- enable syntax highlighting
 	highlight = {
-		enable = true,
+		enable = false,
 		additional_vim_regex_highlighting = false,
 	},
 	-- enable indentation

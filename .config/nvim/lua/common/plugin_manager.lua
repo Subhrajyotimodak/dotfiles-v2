@@ -19,11 +19,9 @@ local packer_install = function(use)
 	use("ahmedkhalf/project.nvim")
 
 	-- preferred colorscheme
-	use("bluz71/vim-nightfly-guicolors")
 	use({ "norcalli/nvim-colorizer.lua" })
-	use("nyoom-engineering/nyoom.nvim")
 	use({ "catppuccin/nvim", as = "catppuccin" })
-	use("xiyaowong/transparent.nvim")
+	use "rebelot/kanagawa.nvim"
 
 	-- tmux & split window navigation
 	use("christoomey/vim-tmux-navigator")
@@ -63,8 +61,8 @@ local packer_install = function(use)
 	use("hrsh7th/nvim-cmp") -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
 	use("hrsh7th/cmp-path") -- source for file system paths
-	use("yetone/avante.nvim")
-	-- use({ "Exafunction/codeium.vim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
+	-- use("yetone/avante.nvim")
+	use({ "Exafunction/windsurf.nvim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") -- snippet engine

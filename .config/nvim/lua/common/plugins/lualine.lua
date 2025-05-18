@@ -5,26 +5,54 @@ if not status then
 	return
 end
 
-local macchiato = require("catppuccin.palettes").get_palette("macchiato")
+local kanagawa = require("lualine.themes.kanagawa")
 
--- get lualine nightfly theme
-local lualine_nightfly = require("lualine.themes.nightfly")
+local function get_next_two_subfolders()
+	-- 1. Get full path of current buffer and derive its parent directory
+	local bufname = vim.api.nvim_buf_get_name(0)
+	if bufname == "" then
+		return "" -- no file associated
+	end
+	local parent_dir = vim.fn.fnamemodify(bufname, ":h")
 
--- change nightlfy theme colors
-lualine_nightfly.normal.a.bg = macchiato.sky
-lualine_nightfly.insert.a.bg = macchiato.teal
-lualine_nightfly.visual.a.bg = macchiato.pink
-lualine_nightfly.command = {
-	a = {
-		gui = "bold",
-		bg = macchiato.yellow,
-		fg = macchiato.base, -- black
-	},
-}
+	-- 2. Scan directory for entries
+	local handle = vim.loop.fs_scandir_next(parent_dir)
+	if not handle then
+		return "" -- could not open directory
+	end
+
+	-- 3. Collect only subdirectories
+	local subdirs = {}
+	while true do
+		local name, t = vim.loop.fs_scandir_next(handle)
+		vim.notify_once(handle)
+		if not name then
+			break
+		end
+		if t == "directory" then
+			table.insert(subdirs, name)
+		end
+	end
+
+	-- 4. Sort alphabetically and return up to two
+	table.sort(subdirs)
+	return table.concat(subdirs, "/")
+end
 
 -- configure lualine with modified theme
 lualine.setup({
 	options = {
-		theme = "catppuccin",
+		component_separators = { left = "", right = "" },
+		section_separators = { left = " ", right = " " },
+		globalstatus = true,
+		theme = kanagawa,
+	},
+	sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch" },
+		lualine_c = { get_next_two_subfolders, "filename", "diff" },
+		lualine_x = { "diagnostics", "lsp_status" },
+		lualine_y = { 'vim.fn.fnamemodify(vim.fn.getcwd(), ":t")' },
+		lualine_z = { "os.date('%d %b, %Y at %I:%M %p')" },
 	},
 })

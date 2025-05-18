@@ -1,19 +1,18 @@
 local servers = require("common.language-server-protocol.servers")
 local lsp_servers = {
-		"html",
-		"jsonls",
-		"cssls" ,
-		"clangd",
-		"gopls" ,
-		"pyright" ,
-		"tailwindcss" ,
-		"emmet_ls" ,
-		"lua_ls" ,
-		"marksman" ,
-		"svelte" ,
-		"ts_ls" ,
-		"mdx_analyzer" ,
-
+	"html",
+	"jsonls",
+	"cssls" ,
+	"clangd",
+	-- "gopls" ,
+	"pyright" ,
+	"tailwindcss" ,
+	"emmet_ls" ,
+	"lua_ls" ,
+	"marksman" ,
+	-- "svelte" ,
+	"ts_ls" ,
+	"mdx_analyzer" ,
 }
 
 -- for key, _ in pairs(servers({}, {})) do
@@ -35,7 +34,15 @@ if not mason_lspconfig_status then
 end
 
 -- enable mason
-mason.setup()
+mason.setup({
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
+})
 
 mason_lspconfig.setup({
 	-- list of servers for mason to install

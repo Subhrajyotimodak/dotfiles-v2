@@ -1,7 +1,7 @@
 local font = require("fonts").font
 local wezterm = require("wezterm")
 
-local colors = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
+local colors = wezterm.color.get_builtin_schemes()["Kanagawa (Gogh)"]
 
 local function appearance(config)
 	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
@@ -20,10 +20,10 @@ local function appearance(config)
 	}
 
 	config.window_padding = {
-		left = 10,
-		right = 10,
-		top = 10,
-		bottom = 10,
+		left = 0,
+		right = 0,
+		top = 0,
+		bottom = 0,
 	}
 end
 
