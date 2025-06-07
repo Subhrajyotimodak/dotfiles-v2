@@ -17,11 +17,12 @@ local packer_install = function(use)
 	-- alpha screen
 	use("goolord/alpha-nvim")
 	use("ahmedkhalf/project.nvim")
+	use("imNel/monorepo.nvim")
 
 	-- preferred colorscheme
 	use({ "norcalli/nvim-colorizer.lua" })
 	use({ "catppuccin/nvim", as = "catppuccin" })
-	use "rebelot/kanagawa.nvim"
+	use("rebelot/kanagawa.nvim")
 
 	-- tmux & split window navigation
 	use("christoomey/vim-tmux-navigator")
@@ -61,7 +62,13 @@ local packer_install = function(use)
 	use("hrsh7th/nvim-cmp") -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
 	use("hrsh7th/cmp-path") -- source for file system paths
-	-- use("yetone/avante.nvim")
+	use({
+		"azorng/goose.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"MeanderingProgrammer/render-markdown.nvim",
+		},
+	})
 	use({ "Exafunction/windsurf.nvim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
 
 	-- snippets
@@ -88,10 +95,10 @@ local packer_install = function(use)
 	-- configuring lsp servers
 	use("neovim/nvim-lspconfig") -- easily configure language servers
 	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-	-- use({
-	-- 	"nvimdev/lspsaga.nvim",
-	-- 	branch = "main"
-	-- }) -- enhanced lsp uis
+	use({
+		"nvimdev/lspsaga.nvim",
+		branch = "main",
+	}) -- enhanced lsp uis
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
 	-- treesitter configuration

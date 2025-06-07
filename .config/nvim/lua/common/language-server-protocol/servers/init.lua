@@ -23,4 +23,4 @@ return function(capabilities, on_attach)
 	}
 end
 
-		-- svelte = svelte(capabilities, on_attach),
+-- svelte = svelte(capabilities, on_attach),

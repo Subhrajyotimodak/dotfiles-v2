@@ -1,7 +1,6 @@
 -- import lspconfig plugin safely
 local servers = require("common.language-server-protocol.servers")
 local flutter = require("common.language-server-protocol.servers.flutter")
-local tailwindcss = require("common.language-server-protocol.servers.tailwindcss")
 local keymaps = require("common.language-server-protocol.keymaps")
 
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
@@ -38,15 +37,33 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
-local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.INFO] = "󰋼 ",
+			[vim.diagnostic.severity.HINT] = "󰌵 ",
+		},
+		texthl = {
+			[vim.diagnostic.severity.ERROR] = "Error",
+			[vim.diagnostic.severity.WARN] = "Error",
+			[vim.diagnostic.severity.HINT] = "Hint",
+			[vim.diagnostic.severity.INFO] = "Info",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+	},
+})
 
 for key, value in pairs(servers(capabilities, on_attach)) do
-	lspconfig[key].setup(value)
+	-- lspconfig[key].setup(value)
+	vim.lsp.enable(key);
+	vim.lsp.config(key, value)
 end
 
 flutter(capabilities, on_attach)
-tailwindcss(capabilities, on_attach)

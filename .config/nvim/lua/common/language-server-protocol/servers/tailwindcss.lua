@@ -58,12 +58,11 @@ return function(capabilities, on_attach)
 			},
 			-- see the extension section to learn more
 			extension = {
-				queries = {
-					"javascriptreact",
-					"typescriptreact",
-				}, -- a list of filetypes having custom `class` queries
+				queries = filetypes, -- a list of filetypes having custom `class` queries
 				patterns = { -- a map of filetypes to Lua pattern lists
 					-- example:
+					typescriptreact = { "className=[\"']([^\"']+)[\"']" },
+					javascriptreact = { "className=[\"']([^\"']+)[\"']" },
 					rust = { "class=[\"']([^\"']+)[\"']" },
 					javascript = { "clsx%(([^)]+)%)" },
 				},
@@ -76,20 +75,47 @@ return function(capabilities, on_attach)
 		filetypes = filetypes,
 		on_attach = on_attach,
 		capabilities = capabilities,
-		on_new_config = function(new_config)
-			if not new_config.settings then
-				new_config.settings = {}
+		settings = {
+			tailwindCSS = {
+				validate = true,
+				lint = {
+					cssConflict = "warning",
+					invalidApply = "error",
+					invalidScreen = "error",
+					invalidVariant = "error",
+					invalidConfigPath = "error",
+					invalidTailwindDirective = "error",
+					recommendedVariantOrder = "warning",
+				},
+				classAttributes = {
+					"class",
+					"className",
+					"class:list",
+					"classList",
+					"ngClass",
+				},
+				includeLanguages = {
+					eelixir = "html-eex",
+					eruby = "erb",
+					templ = "html",
+					htmlangular = "html",
+				},
+			},
+		},
+		before_init = function(_, config)
+			if not config.settings then
+				config.settings = {}
 			end
-			if not new_config.settings.editor then
-				new_config.settings.editor = {}
+			if not config.settings.editor then
+				config.settings.editor = {}
 			end
-			if not new_config.settings.editor.tabSize then
-				-- set tab size for hover
-				new_config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
+			if not config.settings.editor.tabSize then
+				config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
 			end
 		end,
-		root_dir = function(fname)
-			return util.root_pattern(
+		workspace_required = true,
+		root_dir = function(bufnr, on_dir)
+			local root_files = {
 				"tailwind.config.js",
 				"tailwind.config.cjs",
 				"tailwind.config.mjs",
@@ -97,32 +123,12 @@ return function(capabilities, on_attach)
 				"postcss.config.js",
 				"postcss.config.cjs",
 				"postcss.config.mjs",
-				"postcss.config.ts"
-			)(fname) or vim.fs.dirname(vim.fs.find("package.json", { path = fname, upward = true })[1]) or vim.fs.dirname(
-				vim.fs.find("node_modules", { path = fname, upward = true })[1]
-			) or vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
+				"postcss.config.ts",
+			}
+			local fname = vim.api.nvim_buf_get_name(bufnr)
+			root_files = util.insert_package_json(root_files, "tailwindcss", fname)
+			root_files = util.root_markers_with_field(root_files, { "mix.lock" }, "tailwind", fname)
+			on_dir(vim.fs.dirname(vim.fs.find(root_files, { path = fname, upward = true })[1]))
 		end,
-
-		settings = {
-			tailwindCSS = {
-				classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
-				includeLanguages = {
-					eelixir = "html-eex",
-					eruby = "erb",
-					htmlangular = "html",
-					templ = "html",
-				},
-				lint = {
-					cssConflict = "warning",
-					invalidApply = "error",
-					invalidConfigPath = "error",
-					invalidScreen = "error",
-					invalidTailwindDirective = "error",
-					invalidVariant = "error",
-					recommendedVariantOrder = "warning",
-				},
-				validate = true,
-			},
-		},
 	}
 end

@@ -2,6 +2,6 @@ return function(capabilities, on_attach)
 	return {
 		capabilities = capabilities,
 		on_attach = on_attach,
-		filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+		filetypes = { "html", "typescript.tsx", "javascript.tsx", "css", "sass", "scss", "less", "svelte", "typescript", "javascript" },
 	}
 end

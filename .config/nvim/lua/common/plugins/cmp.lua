@@ -78,8 +78,8 @@ cmp.setup({
 
 	-- sources for autocompletion
 	sources = cmp.config.sources({
-		{ name = "codeium" },
 		{ name = "nvim_lsp" }, -- lsp
+		{ name = "codeium" }, -- codeium
 		-- { name = "avante" }, -- avante
 		{ name = "luasnip" }, -- snippets
 		{ name = "buffer" }, -- text within current buffer
@@ -91,7 +91,7 @@ cmp.setup({
 			before = require("tailwind-tools.cmp").lspkind_format,
 			maxwidth = 50,
 			ellipsis_char = "...",
-			symbol_map = { Codeium = "" },
+			-- symbol_map = { Codeium = "" },
 		}),
 	},
 })

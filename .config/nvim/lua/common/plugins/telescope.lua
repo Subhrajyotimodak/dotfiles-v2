@@ -27,4 +27,5 @@ telescope.setup({
 })
 
 telescope.load_extension("media_files")
+telescope.load_extension("monorepo")
 --[[ telescope.load_extension("fzf") ]]

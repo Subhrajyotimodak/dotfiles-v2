@@ -10,7 +10,7 @@ avante.setup({
 	-- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
 	-- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
 	-- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
-	auto_suggestions_provider = "openai",
+	auto_suggestions_provider = false,
 	-- claude = {
 	--   endpoint = "https://api.anthropic.com",
 	--   model = "claude-3-5-sonnet-20241022",

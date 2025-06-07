@@ -24,7 +24,7 @@ return function(opts)
 	keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
 	-- show diagnostics for line
-	keymap.set("n", "<leader>x", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+	keymap.set("n", "<leader>l", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 
 	-- show diagnostics for cursor
 	keymap.set("n", "<leader>k", "<cmd>lua vim.diagnostic.open_float(nil, { scope = 'cursor' })<CR>", opts)
@@ -43,6 +43,5 @@ return function(opts)
 	-- vim.keymap.set("n", "<leader>o", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", opts)
 
 	-- show buffer diagnostics
-	-- keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-	keymap.set("n", "<leader>q", setloclist, opts)
+	keymap.set("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
