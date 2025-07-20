@@ -7,6 +7,7 @@ require("common.plugins.treesitter")
 require("common.plugins.notify")
 
 require("common.plugins.cmp")
+-- require("common.plugins.blink")
 require("common.plugins.comment")
 require("common.plugins.lualine")
 require("common.plugins.neo-tree")
@@ -30,5 +31,9 @@ require("common.language-server-protocol.lspsaga")
 require("common.language-server-protocol.guard")
 
 require("common.plugins.codeium")
-require("common.plugins.goose")
--- require("common.plugins.avante")
+-- require("common.plugins.goose")
+require("common.plugins.avante")
+require("common.plugins.mcphub")
+
+-- Setup smart tab after all plugins are loaded
+require("common.core.smart-tab")

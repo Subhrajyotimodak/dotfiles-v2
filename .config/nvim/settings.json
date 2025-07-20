@@ -1,0 +1,68 @@
+{
+    "keyboard.dispatch": "keyCode",
+    "vim.handleKeys": {
+        "<leader>t": false,
+        "<leader>rn": false,
+        "<leader>x": false,
+        "<leader>k": false,
+        "<leader>o": false,
+        "<leader>q": false,
+        "K": false,
+        "gf": false,
+        "gd": false,
+        "gi": false,
+        "[d": false,
+        "]d": false
+    },
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["g", "f"],
+            "commands": ["editor.action.referenceSearch.trigger"]
+        },
+        {
+            "before": ["g", "d"],
+            "commands": ["editor.action.revealDefinition"]
+        },
+        {
+            "before": ["g", "i"],
+            "commands": ["editor.action.goToImplementation"]
+        },
+        {
+            "before": ["<leader>", "t"],
+            "commands": ["editor.action.quickFix"]
+        },
+        {
+            "before": ["<leader>", "r", "n"],
+            "commands": ["editor.action.rename"]
+        },
+        {
+            "before": ["<leader>", "x"],
+            "commands": ["editor.action.showHover"]
+        },
+        {
+            "before": ["<leader>", "k"],
+            "commands": ["editor.action.showHover"]
+        },
+        {
+            "before": ["[", "d"],
+            "commands": ["editor.action.marker.prev"]
+        },
+        {
+            "before": ["]", "d"],
+            "commands": ["editor.action.marker.next"]
+        },
+        {
+            "before": ["K"],
+            "commands": ["editor.action.showHover"]
+        },
+        {
+            "before": ["<leader>", "o"],
+            "commands": ["workbench.action.gotoSymbol"]
+        },
+        {
+            "before": ["<leader>", "q"],
+            "commands": ["workbench.actions.view.problems"]
+        }
+    ]
+}

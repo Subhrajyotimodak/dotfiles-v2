@@ -6,6 +6,7 @@ end
 
 -- Default configuration with all available options
 goose.setup({
+prefered_picker = "telescope",
   default_global_keymaps = true,             -- If false, disables all default global keymaps
   keymap = {
     global = {

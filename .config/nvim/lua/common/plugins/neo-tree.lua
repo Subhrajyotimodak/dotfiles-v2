@@ -44,8 +44,30 @@ local delete_visual = function(state, selected_nodes)
 		require("neo-tree.sources.manager").refresh(state.name)
 	end)
 end
+local avante_add_files = function(state)
+	local node = state.tree:get_node()
+	local filepath = node:get_id()
+	local relative_path = require("avante.utils").relative_path(filepath)
+
+	local sidebar = require("avante").get()
+
+	local open = sidebar:is_open()
+	-- ensure avante sidebar is open
+	if not open then
+		require("avante.api").ask()
+		sidebar = require("avante").get()
+	end
+
+	sidebar.file_selector:add_selected_file(relative_path)
+
+	-- remove neo tree buffer
+	if not open then
+		sidebar.file_selector:remove_selected_file("neo-tree filesystem [1]")
+	end
+end
 
 local config = {
+mode = "legacy",
 	close_if_last_window = true,
 	enable_diagnostics = true,
 	popup_border_style = "rounded",
@@ -88,6 +110,7 @@ local config = {
 			H = "prev_source",
 			L = "next_source",
 			v = "toggle_node",
+			["oa"] = 'avante_add_files'
 		},
 	},
 	filesystem = {
@@ -97,6 +120,7 @@ local config = {
 		commands = {
 			delete = delete,
 			delete_visual = delete_visual,
+			avante_add_files = avante_add_files,
 		},
 		window = {
 			mappings = { h = "toggle_hidden" },

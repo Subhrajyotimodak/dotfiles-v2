@@ -62,14 +62,19 @@ local packer_install = function(use)
 	use("hrsh7th/nvim-cmp") -- completion plugin
 	use("hrsh7th/cmp-buffer") -- source for text in buffer
 	use("hrsh7th/cmp-path") -- source for file system paths
-	use({
-		"azorng/goose.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"MeanderingProgrammer/render-markdown.nvim",
-		},
-	})
+	-- use({
+	-- 	"azorng/goose.nvim",
+	-- 	requires = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"MeanderingProgrammer/render-markdown.nvim",
+	-- 	},
+	-- })
 	use({ "Exafunction/windsurf.nvim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
+	use("MeanderingProgrammer/render-markdown.nvim")
+	-- Optional dependencies
+	use("HakonHarnes/img-clip.nvim")
+	use("stevearc/dressing.nvim") -- for enhanced input UI
+	use("folke/snacks.nvim") -- for modern input UI
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") -- snippet engine
@@ -174,6 +179,31 @@ local packer_install = function(use)
 			vim.cmd(":UpdateRemotePlugins")
 		end,
 	})
+
+	-----------------
+	-- AI Features --
+	-----------------
+	-- avante
+	use({
+		"yetone/avante.nvim",
+		branch = "main",
+		run = "make",
+	})
+	-- mcphub.nvim
+	use({
+		"ravitemer/mcphub.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+		run = "npm install -g mcp-hub@latest",  -- Installs `mcp-hub` node binary globally
+		config = function()
+			require("mcphub").setup()
+		end,
+	})
+
+
+	
+
 end
 
 -- auto install packer if not installed

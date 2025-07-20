@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "project-specific-server": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./"],
+      "name": "Project Filesystem",
+      "description": "Filesystem access for this specific project"
+    },
+    "dotfiles-tools": {
+      "command": "python",
+      "args": ["-m", "mcp_server_git"],
+      "env": {
+        "GIT_REPO_PATH": "${PWD}"
+      },
+      "name": "Dotfiles Git Tools",
+      "description": "Git operations specific to this dotfiles repository"
+    }
+  },
+  "nativeMCPServers": {
+    "project-notes": {
+      "name": "Project Notes",
+      "description": "Notes and documentation for this project"
+    }
+  }
+}
+
