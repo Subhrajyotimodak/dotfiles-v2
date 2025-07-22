@@ -1,2 +1,7 @@
-vim.api.nvim_command(":AvanteBuild")
+-- vim.api.nvim_command(":AvanteBuild")
+
+
+
+
+
 

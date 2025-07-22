@@ -69,8 +69,10 @@ local packer_install = function(use)
 	-- 		"MeanderingProgrammer/render-markdown.nvim",
 	-- 	},
 	-- })
-	use({ "Exafunction/windsurf.nvim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
-	use("MeanderingProgrammer/render-markdown.nvim")
+	use({
+		"MeanderingProgrammer/render-markdown.nvim",
+		ft = { "markdown", "codecompanion" },
+	})
 	-- Optional dependencies
 	use("HakonHarnes/img-clip.nvim")
 	use("stevearc/dressing.nvim") -- for enhanced input UI
@@ -184,11 +186,11 @@ local packer_install = function(use)
 	-- AI Features --
 	-----------------
 	-- avante
-	use({
-		"yetone/avante.nvim",
-		branch = "main",
-		run = "make",
-	})
+	-- use({
+	-- 	"yetone/avante.nvim",
+	-- 	branch = "main",
+	-- 	run = "make",
+	-- })
 	-- mcphub.nvim
 	use({
 		"ravitemer/mcphub.nvim",
@@ -200,6 +202,45 @@ local packer_install = function(use)
 			require("mcphub").setup()
 		end,
 	})
+	use({ "Exafunction/windsurf.nvim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
+	use({
+  	"olimorris/codecompanion.nvim",
+  	requires = {
+    	"nvim-lua/plenary.nvim",
+    	"nvim-treesitter/nvim-treesitter",
+		"MeanderingProgrammer/render-markdown.nvim",
+		"HakonHarnes/img-clip.nvim",
+		"echasnovski/mini.diff",
+		"ravitemer/mcphub.nvim",
+		}
+	})
+use({
+  "echasnovski/mini.diff",
+  config = function()
+    local diff = require("mini.diff")
+    diff.setup({
+      -- Disabled by default
+      source = diff.gen_source.none(),
+    })
+  end
+})
+
+use(
+{
+  "HakonHarnes/img-clip.nvim",
+  opts = {
+    filetypes = {
+      codecompanion = {
+        prompt_for_file_name = false,
+        template = "[Image]($FILE_PATH)",
+        use_absolute_path = true,
+      },
+    },
+  },
+}
+)
+
+
 
 
 	

@@ -32,8 +32,10 @@ require("common.language-server-protocol.guard")
 
 require("common.plugins.codeium")
 -- require("common.plugins.goose")
-require("common.plugins.avante")
+-- require("common.plugins.avante")
 require("common.plugins.mcphub")
+require("common.plugins.codecompanion")
 
 -- Setup smart tab after all plugins are loaded
-require("common.core.smart-tab")
+-- require("common.core.smart-tab")
+
