@@ -18,10 +18,19 @@ avante.setup({
 	-- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
 	-- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
 	-- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
-	auto_suggestions_provider = "claude", -- Using the same provider as main for consistency
+	auto_suggestions_provider = "moonshot", -- Using the same provider as main for consistency
 	memory_summary_provider = nil,
 
 	providers = {
+		moonshot = {
+			endpoint = "https://api.moonshot.ai/v1",
+			model = "kimi-k2-0711-preview",
+			timeout = 30000, -- Timeout in milliseconds
+			extra_request_body = {
+				temperature = 0.75,
+				max_tokens = 32768,
+			},
+		},
 		claude = {
 			endpoint = "https://api.anthropic.com",
 			model = "claude-sonnet-4-20250514",
@@ -70,6 +79,7 @@ avante.setup({
 		-- Enhanced window management
 		safe_window_operations = true, -- Enable safe window operations
 		validate_windows_before_operations = true, -- Validate windows before any operations
+		enable_fastapply = true,
 	},
 
 	-- Enhanced markdown rendering configuration
@@ -203,7 +213,44 @@ avante.setup({
 			rounded = true,
 		},
 		spinner = {
-			editing = { "⡀", "⠄", "⠂", "⠁", "⠈", "⠐", "⠠", "⢀", "⣀", "⢄", "⢂", "⢁", "⢈", "⢐", "⢠", "⣠", "⢤", "⢢", "⢡", "⢨", "⢰", "⣰", "⢴", "⢲", "⢱", "⢸", "⣸", "⢼", "⢺", "⢹", "⣹", "⢽", "⢻", "⣻", "⢿", "⣿" },
+			editing = {
+				"⡀",
+				"⠄",
+				"⠂",
+				"⠁",
+				"⠈",
+				"⠐",
+				"⠠",
+				"⢀",
+				"⣀",
+				"⢄",
+				"⢂",
+				"⢁",
+				"⢈",
+				"⢐",
+				"⢠",
+				"⣠",
+				"⢤",
+				"⢢",
+				"⢡",
+				"⢨",
+				"⢰",
+				"⣰",
+				"⢴",
+				"⢲",
+				"⢱",
+				"⢸",
+				"⣸",
+				"⢼",
+				"⢺",
+				"⢹",
+				"⣹",
+				"⢽",
+				"⢻",
+				"⣻",
+				"⢿",
+				"⣿",
+			},
 			generating = { "·", "✢", "✳", "∗", "✻", "✽" },
 			thinking = { "🤯", "🙄" },
 			-- Enhanced spinner for suggestion loading
@@ -249,18 +296,18 @@ avante.setup({
 		negate_patterns = {},
 	},
 
-  file_selector = {
-    provider = nil,
-    -- Options override for custom providers
-    provider_opts = {},
-  },
-  selector = {
-    ---@alias avante.SelectorProvider "native" | "fzf_lua" | "mini_pick" | "snacks" | "telescope" | fun(selector: avante.ui.Selector): nil
-    ---@type avante.SelectorProvider
-    provider = "telescope",
-    provider_opts = {},
-    exclude_auto_select = {}, -- List of items to exclude from auto selection
-  },
+	file_selector = {
+		provider = nil,
+		-- Options override for custom providers
+		provider_opts = {},
+	},
+	selector = {
+		---@alias avante.SelectorProvider "native" | "fzf_lua" | "mini_pick" | "snacks" | "telescope" | fun(selector: avante.ui.Selector): nil
+		---@type avante.SelectorProvider
+		provider = "telescope",
+		provider_opts = {},
+		exclude_auto_select = {}, -- List of items to exclude from auto selection
+	},
 
 	input = {
 		provider = "native",
@@ -294,7 +341,3 @@ avante.setup({
 		}
 	end,
 })
-
-
-
-

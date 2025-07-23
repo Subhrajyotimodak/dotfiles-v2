@@ -30,10 +30,8 @@ require("common.language-server-protocol.lspconfig")
 require("common.language-server-protocol.lspsaga")
 require("common.language-server-protocol.guard")
 
-require("common.plugins.codeium")
 -- require("common.plugins.goose")
 require("common.plugins.avante")
 require("common.plugins.mcphub")
+require("common.plugins.codeium")
 
--- Setup smart tab after all plugins are loaded
-require("common.core.smart-tab")

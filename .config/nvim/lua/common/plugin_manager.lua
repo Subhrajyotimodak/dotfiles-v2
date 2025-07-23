@@ -69,11 +69,9 @@ local packer_install = function(use)
 	-- 		"MeanderingProgrammer/render-markdown.nvim",
 	-- 	},
 	-- })
-	use({ "Exafunction/windsurf.nvim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
 	use("MeanderingProgrammer/render-markdown.nvim")
 	-- Optional dependencies
 	use("HakonHarnes/img-clip.nvim")
-	use("stevearc/dressing.nvim") -- for enhanced input UI
 	use("folke/snacks.nvim") -- for modern input UI
 
 	-- snippets
@@ -200,6 +198,8 @@ local packer_install = function(use)
 			require("mcphub").setup()
 		end,
 	})
+	use({ "Exafunction/windsurf.nvim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
+
 
 
 	
