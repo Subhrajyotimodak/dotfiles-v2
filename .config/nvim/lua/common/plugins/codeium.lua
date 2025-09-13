@@ -6,8 +6,20 @@ end
 
 codeium.setup({
 	enable_cmp_source = true,
+	workspace_root = {
+		use_lsp = true,
+		find_root = nil,
+		paths = {
+			".bzr",
+			".git",
+			".hg",
+			".svn",
+			"_FOSSIL_",
+			"package.json",
+		},
+	},
 	virtual_text = {
-		enabled = false,
+		enabled = true,
 		-- These are the defaults
 		-- Set to true if you never want completions to be shown automatically.
 		manual = false,

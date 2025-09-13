@@ -59,3 +59,9 @@ keymap("n", "<leader>fb", ":Telescope buffers<cr>", opts)
 keymap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", opts) -- find string in current working directory as you type
 keymap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", opts) -- find string under cursor in current working directory
 keymap("n", "<leader><leader>", "<cmd>Guard fmt<cr>", opts) -- find string under cursor in current working directory
+keymap("n", "<leader>ac", "<cmd>Codeium Chat<cr>", opts) -- find string under cursor in current working directory
+
+-- CodeCompanion
+keymap("n", "<leader>ac", "<cmd>CodeCompanionChat<cr>", opts)
+keymap("n", "<leader>aa", "<cmd>CodeCompanionActions<cr>", opts)
+keymap("n", "<leader>ai", "<cmd>CodeCompanionInline<cr>", opts)

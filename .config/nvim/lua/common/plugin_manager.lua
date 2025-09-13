@@ -182,28 +182,29 @@ local packer_install = function(use)
 	-- AI Features --
 	-----------------
 	-- avante
-	use({
-		"yetone/avante.nvim",
-		branch = "main",
-		run = "make",
-	})
+	-- use({
+	-- 	"yetone/avante.nvim",
+	-- 	branch = "main",
+	-- 	run = "make",
+	-- })
 	-- mcphub.nvim
+	use({
+  "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+	})
 	use({
 		"ravitemer/mcphub.nvim",
 		requires = {
 			"nvim-lua/plenary.nvim",
 		},
-		run = "npm install -g mcp-hub@latest",  -- Installs `mcp-hub` node binary globally
-		config = function()
-			require("mcphub").setup()
-		end,
+		run = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
 	})
 	use({ "Exafunction/windsurf.nvim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
-
-
-
-	
-
+	-- use({
+	-- 	"davidyz/vectorcode",
+	-- })
 end
 
 -- auto install packer if not installed
