@@ -23,11 +23,11 @@ mcphub.setup({
 	-- auto_approve = false, -- Require manual approval for MCP tool calls
 	-- auto_toggle_mcp_servers = true, -- Allow LLMs to start/stop MCP servers automatically
 	--
-	-- extensions = {
-	-- 	avante = {
-	-- 		make_slash_commands = true, -- Convert MCP prompts to slash commands
-	-- 	},
-	-- },
+	extensions = {
+		avante = {
+			make_slash_commands = true, -- Convert MCP prompts to slash commands
+		},
+	},
 
 	--- Plugin specific options-------------------
 	native_servers = {}, -- Custom lua native servers

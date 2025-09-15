@@ -181,19 +181,34 @@ local packer_install = function(use)
 	-----------------
 	-- AI Features --
 	-----------------
-	-- avante
-	-- use({
-	-- 	"yetone/avante.nvim",
-	-- 	branch = "main",
-	-- 	run = "make",
-	-- })
-	-- mcphub.nvim
+	-- Avante
 	use({
-  "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
+		"yetone/avante.nvim",
+		branch = "main",
+		run = "make",
+		dependencies = {
+			-- Required dependencies
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"MeanderingProgrammer/render-markdown.nvim",
+			-- Optional dependencies (good to have)
+			"hrsh7th/nvim-cmp",
+			"nvim-tree/nvim-web-devicons", -- or use 'echasnovski/mini.icons'
+			"HakonHarnes/img-clip.nvim",
+			"stevearc/dressing.nvim", -- for enhanced input UI
+			"folke/snacks.nvim", -- for modern input UI
+		},
 	})
+
+	-- Code Companion
+	-- use({
+	--  "olimorris/codecompanion.nvim",
+	--    dependencies = {
+	--      "nvim-lua/plenary.nvim",
+	--    },
+	-- })
+
+	-- mcphub.nvim
 	use({
 		"ravitemer/mcphub.nvim",
 		requires = {

@@ -33,10 +33,9 @@ if not vim.g.vscode then
 
 	-- require("common.plugins.goose")
 
-	-- require("common.ai.avante")
+	require("common.ai.avante")
 	require("common.ai.mcphub")
 	-- require("common.ai.vectorcode")
-	require("common.ai.codecompanion")
+	-- require("common.ai.codecompanion")
 	require("common.plugins.codeium")
-
 end
