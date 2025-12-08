@@ -245,3 +245,5 @@ export PATH="/opt/homebrew/opt/icu4c@76/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c@76/sbin:$PATH"
 
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
+
+git-update () {git stash && git pull && git pull origin ${1:-'development'} && git push && git stash pop}

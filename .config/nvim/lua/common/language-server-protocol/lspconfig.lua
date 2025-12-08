@@ -3,13 +3,6 @@ local servers = require("common.language-server-protocol.servers")
 local flutter = require("common.language-server-protocol.servers.flutter")
 local keymaps = require("common.language-server-protocol.keymaps")
 
--- import cmp-nvim-lsp plugin safely
-local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not cmp_nvim_lsp_status then
-	vim.notify("cmp_nvim_lsp is not installed :(")
-	return
-end
-
 -- enable keybinds only for when lsp server available
 local keymap = vim.keymap -- for conciseness
 
@@ -28,8 +21,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
-local capabilities = cmp_nvim_lsp.default_capabilities()
--- local capabilities = require("blink.cmp").get_lsp_capabilities()
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
 vim.diagnostic.config({

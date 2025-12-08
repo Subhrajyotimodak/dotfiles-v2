@@ -5,7 +5,6 @@ if not status_ok then
 end
 
 return function(capabilities, on_attach)
-	local util = require("lspconfig.util")
 	local filetypes = {
 		"html",
 		"css",
@@ -29,7 +28,7 @@ return function(capabilities, on_attach)
 		---@type TailwindTools.Option
 		{
 			server = {
-				override = true, -- setup the server from the plugin if true
+				override = false, -- setup the server from the plugin if true
 				settings = {}, -- shortcut for `settings.tailwindCSS`
 				on_attach = on_attach, -- callback triggered when the server attaches to a buffer
 				capabilities = capabilities,
@@ -126,8 +125,8 @@ return function(capabilities, on_attach)
 				"postcss.config.ts",
 			}
 			local fname = vim.api.nvim_buf_get_name(bufnr)
-			root_files = util.insert_package_json(root_files, "tailwindcss", fname)
-			root_files = util.root_markers_with_field(root_files, { "mix.lock" }, "tailwind", fname)
+			-- root_files = util.insert_package_json(root_files, "tailwindcss", fname)
+			-- root_files = util.root_markers_with_field(root_files, { "mix.lock" }, "tailwind", fname)
 			on_dir(vim.fs.dirname(vim.fs.find(root_files, { path = fname, upward = true })[1]))
 		end,
 	}

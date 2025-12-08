@@ -6,32 +6,22 @@ end
 
 avante.setup({
 	---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-	provider = "grok", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+	provider = "openrouter", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
 	---@alias Mode "agentic" | "legacy"
 	---@type Mode
 	mode = "agentic", -- The default mode for interaction. "agentic" uses tools to automatically generate code, "legacy" uses the old planning method to generate code.
 	-- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
 	-- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
 	-- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
-	auto_suggestions_provider = "kimi",
+	auto_suggestions_provider = "openrouter",
 	providers = {
-		kimi = {
+		openrouter = {
 			api_key_name = "OPENROUTER_API_KEY",
 			endpoint = "https://openrouter.ai/api/v1",
-			model = "x-ai/grok-code-fast-1",
+			model = "openai/gpt-4.1-mini",
 			extra_request_body = {
-				temperature = 0.4,
-				max_tokens = 2048,
-			},
-			__inherited_from = "openai",
-		},
-		grok = {
-			api_key_name = "OPENROUTER_API_KEY",
-			endpoint = "https://openrouter.ai/api/v1",
-			model = "x-ai/grok-code-fast-1",
-			extra_request_body = {
-				temperature = 0.4,
-				max_tokens = 2048,
+				temperature = 1,
+				max_tokens = 10000,
 			},
 			__inherited_from = "openai",
 		},
@@ -48,8 +38,8 @@ avante.setup({
 	---Note: This is an experimental feature and may not work as expected.
 	dual_boost = {
 		enabled = false,
-		first_provider = "grok",
-		second_provider = "grok",
+		first_provider = "openrouter",
+		second_provider = "openrouter",
 		prompt = "Based on the two reference outputs below, generate a response that incorporates elements from both but reflects your own judgment and unique perspective. Do not provide any explanation, just give the response directly. Reference Output 1: [{{provider1_output}}], Reference Output 2: [{{provider2_output}}]",
 		timeout = 60000, -- Timeout in milliseconds
 	},
@@ -232,7 +222,7 @@ avante.setup({
 	end,
 	-- RAG Service
 	rag_service = { -- RAG Service configuration
-		enabled = true, -- Enables the RAG service
+		enabled = false, -- Enables the RAG service
 		host_mount = os.getenv("HOME"), -- Host mount path for the rag service (Docker will mount this path)
 		runner = "docker", -- Runner for the RAG service (can use docker or nix)
 		llm = { -- Language Model (LLM) configuration for RAG service

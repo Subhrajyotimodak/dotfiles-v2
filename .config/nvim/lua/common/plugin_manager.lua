@@ -59,9 +59,14 @@ local packer_install = function(use)
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
 
 	-- autocompletion
-	use("hrsh7th/nvim-cmp") -- completion plugin
-	use("hrsh7th/cmp-buffer") -- source for text in buffer
-	use("hrsh7th/cmp-path") -- source for file system paths
+	use({
+		'saghen/blink.cmp',
+		requires = { 'rafamadriz/friendly-snippets' },
+		run = 'cargo build --release'
+	})
+	-- use("hrsh7th/nvim-cmp") -- completion plugin
+	-- use("hrsh7th/cmp-buffer") -- source for text in buffer
+	-- use("hrsh7th/cmp-path") -- source for file system paths
 	-- use({
 	-- 	"azorng/goose.nvim",
 	-- 	requires = {
@@ -75,7 +80,13 @@ local packer_install = function(use)
 	use("folke/snacks.nvim") -- for modern input UI
 
 	-- snippets
-	use("L3MON4D3/LuaSnip") -- snippet engine
+use({
+	"L3MON4D3/LuaSnip",
+	-- follow latest release.
+	tag = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+	-- install jsregexp (optional!:).
+	run = "make install_jsregexp"
+})
 	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
 	use("rafamadriz/friendly-snippets") -- useful snippets
 
@@ -96,7 +107,7 @@ local packer_install = function(use)
 	use("simrat39/symbols-outline.nvim")
 
 	-- configuring lsp servers
-	use("neovim/nvim-lspconfig") -- easily configure language servers
+	-- use("neovim/nvim-lspconfig") -- easily configure language servers
 	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
 	use({
 		"nvimdev/lspsaga.nvim",

@@ -10,4 +10,7 @@ fonts(config)
 appearance(config)
 command_palette(config)
 
+-- Enable CSI-u protocol for better keyboard handling
+config.enable_csi_u_key_encoding = true
+
 return config

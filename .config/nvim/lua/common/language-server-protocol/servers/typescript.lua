@@ -1,5 +1,3 @@
-local util = require("lspconfig.util")
-
 -- return function(capabilities, on_attach)
 -- 	return {
 -- 		disable_commands = false, -- prevent the plugin from creating Vim commands

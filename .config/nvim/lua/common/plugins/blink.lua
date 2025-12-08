@@ -11,43 +11,24 @@ if not luasnip_status then
 	return
 end
 
--- import lspkind plugin safely
-local lspkind_status, lspkind = pcall(require, "lspkind")
-if not lspkind_status then
-	return
-end
-
 -- load vs-code like snippets from plugins (e.g. friendly-snippets)
 require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.opt.completeopt = "menu,menuone,noselect"
 
-local check_backspace = function()
-	local col = vim.fn.col(".") - 1
-	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
-
 local disabled_for = { "markdown" }
 
 cmp.setup({
-	fuzzy = { implementation = "lua", sort = { "sort_text" } },
 	enabled = function()
 		return not vim.tbl_contains(disabled_for, vim.bo.filetype)
 	end,
 	keymap = {
-		["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-		["<CR>"] = { "select_and_accept", "fallback" },
-
-		["<Up>"] = { "select_prev", "fallback" },
-		["<Down>"] = { "select_next", "fallback" },
-		["<C-p>"] = { "select_prev", "fallback_to_mappings" },
-		["<C-n>"] = { "select_next", "fallback_to_mappings" },
-
-		["<C-b>"] = { "scroll_documentation_up", "fallback" },
-		["<C-f>"] = { "scroll_documentation_down", "fallback" },
-
-		["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
-		-- Tab and Shift-Tab are handled by smart-tab.lua
+		preset = 'default',
+		['<C-space>'] = { 'show', 'fallback' },
+		['<C-e>'] = { 'hide', 'fallback' },
+		['<CR>'] = { 'accept', 'fallback' },
+		['<Tab>'] = { 'select_next', 'fallback' },
+		['<S-Tab>'] = { 'select_prev', 'fallback' },
 	},
 
 	completion = {
@@ -56,8 +37,8 @@ cmp.setup({
 		-- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
 		keyword = { range = "full" },
 
-		-- Don't select by default, auto insert on selection
-		list = { selection = { preselect = false, auto_insert = false } },
+		-- Preselect first item so Enter can accept it
+		list = { selection = { preselect = true, auto_insert = false } },
 		-- or set via a function
 
 		menu = {
@@ -96,23 +77,18 @@ cmp.setup({
 
 	sources = {
 		-- Remove 'buffer' if you don't want text completions, by default it's only enabled when LSP returns no items
-  transform_items = function(_, items) return items end,
-		default = { "codeium", "lsp", "path", "snippets", "buffer", },
+		transform_items = function(_, items)
+			return items
+		end,
+		default = { "lsp", "path", "snippets", "buffer" },
 		providers = {
-			codeium = {
-				name = "codeium", -- IMPORTANT: use the same name as you would for nvim-cmp
-				module = "blink.compat.source",
-
-				-- all blink.cmp source config options work as normal:
-				--score_offset = -3,
-
-				opts = {
-					-- options passed to the completion source
-					-- equivalent to `option` field of nvim-cmp source config
-
-					cache_digraphs_on_start = true,
-				},
-			},
+			-- Codeium integration with blink.cmp (requires blink-compat)
+			-- Uncomment if you have blink-compat installed and want codeium completions
+			-- codeium = {
+			-- 	name = "codeium",
+			-- 	module = "blink.compat.source",
+			-- 	score_offset = -3,
+			-- },
 		},
 	},
 

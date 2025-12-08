@@ -1,0 +1,13 @@
+[
+  {
+    "key": "ctrl+space",
+    "command": "-editor.action.triggerSuggest",
+    "when": "editorTextFocus && neovim.mode == insert"
+  },
+  {
+    "key": "ctrl+space",
+    "command": "vscode-neovim.send",
+    "when": "editorTextFocus && neovim.mode == insert",
+    "args": "<C-Space>"
+  }
+]
