@@ -65,3 +65,11 @@ keymap("n", "<leader>ac", "<cmd>Codeium Chat<cr>", opts) -- find string under cu
 keymap("n", "<leader>ac", "<cmd>CodeCompanionChat<cr>", opts)
 keymap("n", "<leader>aa", "<cmd>CodeCompanionActions<cr>", opts)
 keymap("n", "<leader>ai", "<cmd>CodeCompanionInline<cr>", opts)
+
+-- Avante model switching
+keymap("n", "<leader>am", "<cmd>AvanteSwitchModel<cr>", opts)
+keymap("n", "<leader>aM", "<cmd>AvanteCurrentModel<cr>", opts)
+
+-- Avante RAG Service
+keymap("n", "<leader>ar", "<cmd>AvanteRagStatus<cr>", opts) -- Check RAG status
+keymap("n", "<leader>aR", "<cmd>AvanteRagIndexProject<cr>", opts) -- Index current project

@@ -192,23 +192,9 @@ use({
 	-----------------
 	-- AI Features --
 	-----------------
-	-- Avante
+	-- Cursor Agent
 	use({
-		"yetone/avante.nvim",
-		branch = "main",
-		run = "make",
-		dependencies = {
-			-- Required dependencies
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			"MeanderingProgrammer/render-markdown.nvim",
-			-- Optional dependencies (good to have)
-			"hrsh7th/nvim-cmp",
-			"nvim-tree/nvim-web-devicons", -- or use 'echasnovski/mini.icons'
-			"HakonHarnes/img-clip.nvim",
-			"stevearc/dressing.nvim", -- for enhanced input UI
-			"folke/snacks.nvim", -- for modern input UI
-		},
+		"xTacobaco/cursor-agent.nvim",
 	})
 
 	-- Code Companion
@@ -219,14 +205,6 @@ use({
 	--    },
 	-- })
 
-	-- mcphub.nvim
-	use({
-		"ravitemer/mcphub.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
-		run = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
-	})
 	use({ "Exafunction/windsurf.nvim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
 	-- use({
 	-- 	"davidyz/vectorcode",

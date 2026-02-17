@@ -13,7 +13,7 @@ require("common.plugins.terminal-fix")
 
 -- require("common.plugins.cmp")
 require("common.plugins.blink")
-require("common.plugins.blink-debug")
+-- require("common.plugins.blink-debug")
 require("common.plugins.comment")
 require("common.plugins.lualine")
 require("common.plugins.neo-tree")
@@ -37,10 +37,7 @@ require("common.language-server-protocol.lspsaga")
 require("common.language-server-protocol.guard")
 
 -- require("common.plugins.goose")
-
-
--- require("common.ai.avante")
--- require("common.ai.mcphub")
--- require("common.ai.vectorcode")
--- require("common.ai.codecompanion")
 require("common.plugins.codeium")
+
+-- AI Providers
+require("common.ai.cursor-agent")

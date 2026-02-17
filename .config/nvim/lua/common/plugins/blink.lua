@@ -16,7 +16,56 @@ require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.opt.completeopt = "menu,menuone,noselect"
 
-local disabled_for = { "markdown" }
+local disabled_for = { "markdown", "AvanteInput" }
+
+-- Check if blink.compat.source is available (requires blink-compat plugin)
+local compat_source_ok, _ = pcall(require, "blink.compat.source")
+
+-- Build default sources list conditionally
+local default_sources = { "lsp", "path", "snippets", "buffer" }
+if compat_source_ok then
+	table.insert(default_sources, "avante_commands")
+	table.insert(default_sources, "avante_mentions")
+	table.insert(default_sources, "avante_shortcuts")
+	table.insert(default_sources, "avante_files")
+end
+
+-- Build providers table conditionally
+local providers = {}
+if compat_source_ok then
+	-- Codeium integration with blink.cmp (requires blink-compat)
+	-- Uncomment if you have blink-compat installed and want codeium completions
+	-- providers.codeium = {
+	-- 	name = "codeium",
+	-- 	module = "blink.compat.source",
+	-- 	score_offset = -3,
+	-- }
+	-- Avante integration with blink.cmp
+	providers.avante_commands = {
+		name = "avante_commands",
+		module = "blink.compat.source",
+		score_offset = 90, -- show at a higher priority than lsp
+		opts = {},
+	}
+	providers.avante_files = {
+		name = "avante_files",
+		module = "blink.compat.source",
+		score_offset = 100, -- show at a higher priority than lsp
+		opts = {},
+	}
+	providers.avante_mentions = {
+		name = "avante_mentions",
+		module = "blink.compat.source",
+		score_offset = 1000, -- show at a higher priority than lsp
+		opts = {},
+	}
+	providers.avante_shortcuts = {
+		name = "avante_shortcuts",
+		module = "blink.compat.source",
+		score_offset = 1000, -- show at a higher priority than lsp
+		opts = {},
+	}
+end
 
 cmp.setup({
 	enabled = function()
@@ -27,8 +76,8 @@ cmp.setup({
 		['<C-space>'] = { 'show', 'fallback' },
 		['<C-e>'] = { 'hide', 'fallback' },
 		['<CR>'] = { 'accept', 'fallback' },
-		['<Tab>'] = { 'select_next', 'fallback' },
-		['<S-Tab>'] = { 'select_prev', 'fallback' },
+		-- ['<Tab>'] = { 'select_next', 'fallback' },
+		-- ['<S-Tab>'] = { 'select_prev', 'fallback' },
 	},
 
 	completion = {
@@ -80,16 +129,8 @@ cmp.setup({
 		transform_items = function(_, items)
 			return items
 		end,
-		default = { "lsp", "path", "snippets", "buffer" },
-		providers = {
-			-- Codeium integration with blink.cmp (requires blink-compat)
-			-- Uncomment if you have blink-compat installed and want codeium completions
-			-- codeium = {
-			-- 	name = "codeium",
-			-- 	module = "blink.compat.source",
-			-- 	score_offset = -3,
-			-- },
-		},
+		default = default_sources,
+		providers = providers,
 	},
 
 	-- Use a preset for snippets, check the snippets documentation for more information
