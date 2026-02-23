@@ -62,7 +62,8 @@ local packer_install = function(use)
 	use({
 		'saghen/blink.cmp',
 		requires = { 'rafamadriz/friendly-snippets' },
-		run = 'cargo build --release'
+		-- Use stable release tags so blink can download prebuilt fuzzy binaries
+		tag = 'v1.*'
 	})
 	-- use("hrsh7th/nvim-cmp") -- completion plugin
 	-- use("hrsh7th/cmp-buffer") -- source for text in buffer

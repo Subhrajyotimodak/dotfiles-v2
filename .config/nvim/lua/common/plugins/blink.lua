@@ -141,4 +141,8 @@ cmp.setup({
 		enabled = true,
 		window = { border = "single" },
 	},
+	-- Prefer Rust matcher when available, but silently fall back to Lua.
+	fuzzy = {
+		implementation = "prefer_rust",
+	},
 })
