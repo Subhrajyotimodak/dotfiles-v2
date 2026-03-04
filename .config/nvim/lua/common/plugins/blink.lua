@@ -144,5 +144,9 @@ cmp.setup({
 	-- Prefer Rust matcher when available, but silently fall back to Lua.
 	fuzzy = {
 		implementation = "prefer_rust",
+		-- Force a release version so prebuilt binaries are used when not on a git tag (e.g. packer clone)
+		prebuilt_binaries = {
+			force_version = "1.9.1",
+		},
 	},
 })

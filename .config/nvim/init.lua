@@ -41,3 +41,9 @@ require("common.plugins.codeium")
 
 -- AI Providers
 require("common.ai.cursor-agent")
+
+-- Review (AiSync, checktime, send-to-cursor): load so :AiSync and autocmds exist even if cursor-agent failed
+local review_ok, review = pcall(require, "common.ai.review")
+if review_ok and review and review.setup then
+	review.setup()
+end

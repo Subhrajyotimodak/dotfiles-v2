@@ -14,8 +14,11 @@ end
 
 -- configure telescope
 telescope.setup({
-	-- configure custom mappings
 	defaults = {
+		-- Avoid ft_to_lang nil error (Neovim 0.10+ treesitter API change); use regex/syntax preview instead
+		preview = {
+			treesitter = { enable = false },
+		},
 		mappings = {
 			i = {
 				["<C-k>"] = actions.move_selection_previous, -- move to prev result

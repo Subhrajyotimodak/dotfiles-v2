@@ -12,6 +12,11 @@ cursor_agent.setup({
 	args = {},
 })
 
+local review_ok, review = pcall(require, "common.ai.review")
+if review_ok then
+	review.setup()
+end
+
 -- Keymaps for cursor-agent
 local opts = { noremap = true, silent = true }
 

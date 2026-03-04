@@ -66,14 +66,24 @@ local avante_add_files = function(state)
 	end
 end
 
+local sources = { "filesystem", "git_status", "ai_review", "ai_review_agent" }
+local selector_sources = {
+	{ source = "filesystem", display_name = "Files" },
+	{ source = "git_status", display_name = "Git" },
+	{ source = "ai_review", display_name = "Review (Mine)" },
+	{ source = "ai_review_agent", display_name = "Review (Agent)" },
+}
+
 local config = {
-mode = "legacy",
+	mode = "legacy",
+	sources = sources,
 	close_if_last_window = true,
 	enable_diagnostics = true,
 	popup_border_style = "rounded",
 	source_selector = {
 		winbar = false,
 		content_layout = "center",
+		sources = selector_sources,
 	},
 	default_component_configs = {
 		indent = { padding = 0 },
@@ -110,7 +120,7 @@ mode = "legacy",
 			H = "prev_source",
 			L = "next_source",
 			v = "toggle_node",
-			["oa"] = 'avante_add_files'
+			["oa"] = "avante_add_files",
 		},
 	},
 	filesystem = {
@@ -124,6 +134,15 @@ mode = "legacy",
 		},
 		window = {
 			mappings = { h = "toggle_hidden" },
+		},
+	},
+	ai_review = {
+		window = {
+			mappings = {
+				["<cr>"] = "open",
+				l = "open",
+				r = "refresh",
+			},
 		},
 	},
 	event_handlers = {

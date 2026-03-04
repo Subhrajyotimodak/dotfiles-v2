@@ -73,3 +73,16 @@ keymap("n", "<leader>aM", "<cmd>AvanteCurrentModel<cr>", opts)
 -- Avante RAG Service
 keymap("n", "<leader>ar", "<cmd>AvanteRagStatus<cr>", opts) -- Check RAG status
 keymap("n", "<leader>aR", "<cmd>AvanteRagIndexProject<cr>", opts) -- Index current project
+
+-- Cursor review helpers
+vim.keymap.set("v", "<D-S-l>", function()
+	require("common.ai.review").send_selection_to_cursor()
+end, { noremap = true, silent = true, desc = "Send selection to Cursor CLI" })
+
+-- Fallback for terminals that do not emit <D-S-l>
+vim.keymap.set("v", "<leader>cl", function()
+	require("common.ai.review").send_selection_to_cursor()
+end, { noremap = true, silent = true, desc = "Send selection to Cursor CLI (fallback)" })
+
+-- Refresh Review (Mine) / Review (Agent) from Cursor DB and git
+vim.keymap.set("n", "<leader>ay", "<cmd>AiSync<cr>", { noremap = true, silent = true, desc = "AI sync: update Review list and refresh Neo-tree" })
