@@ -263,3 +263,6 @@ alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mo
 git-update () {git stash && git pull && git pull origin ${1:-'development'} && git push && git stash pop}
 export PATH="$HOME/.local/bin:$PATH"
 alias develop='~/.config/kitty/scripts/dev_layout.sh'
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

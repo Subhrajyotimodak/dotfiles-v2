@@ -1,0 +1,10 @@
+--- a/lua/avante/llm.lua
++++ b/lua/avante/llm.lua
+@@ -1344,6 +1344,7 @@ function M._create_acp_session_and_continue(opts, acp_client)
+   local project_root = Utils.root.get()
+   local acp_provider = Config.acp_providers[Config.provider] or {}
+   local mcp_servers = acp_provider.mcp_servers or {}
++  if type(mcp_servers) == "function" then mcp_servers = mcp_servers() or {} end
+   acp_client:create_session(project_root, mcp_servers, function(session_id_, err)
+     if err then
+       opts.on_stop({ reason = "error", error = err })

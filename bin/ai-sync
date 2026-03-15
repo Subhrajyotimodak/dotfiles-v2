@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# No-op: Review (Mine) and Review (Agent) are now read from Cursor's DB and git inside Neovim.
-# Kept for compatibility; run :AiSync in Neovim to refresh Neo-tree.
-echo "Review lists are read from ~/.cursor/ai-tracking/ai-code-tracking.db and git. Use :AiSync in Neovim to refresh."

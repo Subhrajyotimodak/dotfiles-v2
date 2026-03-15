@@ -30,6 +30,7 @@ require("common.plugins.indentation-line")
 require("common.plugins.symbol-outline")
 require("common.plugins.dressing")
 require("common.plugins.hologram")
+require("common.plugins.render-markdown")
 
 require("common.language-server-protocol.mason")
 require("common.language-server-protocol.lspconfig")
@@ -38,12 +39,15 @@ require("common.language-server-protocol.guard")
 
 -- require("common.plugins.goose")
 require("common.plugins.codeium")
+-- require("common.plugins.mcphub")
+-- require("common.plugins.avante")
+-- require("common.plugins.claudecode")
 
 -- AI Providers
-require("common.ai.cursor-agent")
+-- require("common.ai.cursor-agent")
 
--- Review (AiSync, checktime, send-to-cursor): load so :AiSync and autocmds exist even if cursor-agent failed
-local review_ok, review = pcall(require, "common.ai.review")
-if review_ok and review and review.setup then
-	review.setup()
-end
+-- -- Review (AiSync, checktime, send-to-cursor): load so :AiSync and autocmds exist even if cursor-agent failed
+-- local review_ok, review = pcall(require, "common.ai.review")
+-- if review_ok and review and review.setup then
+-- 	review.setup()
+-- end

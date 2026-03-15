@@ -1,0 +1,103 @@
+--- a/lua/avante/history/render.lua
++++ b/lua/avante/history/render.lua
+@@ -230,10 +230,25 @@ function M.get_content_lines(content, decoration, truncate)
+         if type(content_item) == "string" then
+           local lines_ = text_to_lines(content_item, decoration)
+           all_lines = vim.list_extend(all_lines, lines_)
++        elseif
++          content_item.type == "diff"
++          and content_item.oldText ~= nil
++          and content_item.newText ~= nil
++          and content_item.oldText ~= vim.NIL
++          and content_item.newText ~= vim.NIL
++        then
++          local path_str = content_item.path and ("Path: " .. Utils.relative_path(content_item.path)) or ""
++          if path_str ~= "" then
++            table.insert(lines, Line:new({ { decoration }, { path_str } }))
++          end
++          local lines_ = M.get_diff_lines(content_item.oldText, content_item.newText, decoration, truncate)
++          lines = vim.list_extend(lines, lines_)
+         end
+       end
+-      local lines_ = lines_to_truncated_lines(all_lines, decoration, truncate)
+-      lines = vim.list_extend(lines, lines_)
++      if #all_lines > 0 then
++        local lines_ = lines_to_truncated_lines(all_lines, decoration, truncate)
++        lines = vim.list_extend(lines, lines_)
++      end
+     end
+     if type(content_obj.content) == "string" then
+       local lines_ = text_to_truncated_lines(content_obj.content, decoration, truncate)
+@@ -321,8 +336,10 @@ function M.get_content_lines(content, decoration, truncate)
+         and content_item.oldText ~= vim.NIL
+         and content_item.newText ~= vim.NIL
+       then
+-        local relative_path = Utils.relative_path(content_item.path)
+-        table.insert(lines, Line:new({ { decoration }, { "Path: " .. relative_path } }))
++        if content_item.path then
++          local relative_path = Utils.relative_path(content_item.path)
++          table.insert(lines, Line:new({ { decoration }, { "Path: " .. relative_path } }))
++        end
+         local lines_ = M.get_diff_lines(content_item.oldText, content_item.newText, decoration, truncate)
+         lines = vim.list_extend(lines, lines_)
+       end
+@@ -467,25 +484,44 @@ local function tool_to_lines(item, message, messages, expanded)
+   end
+   local add_diff_lines = false
+   if item.input and type(item.input) == "table" then
+-    if type(item.input.old_str) == "string" and type(item.input.new_str) == "string" then
+-      local diff_lines = M.get_diff_lines(item.input.old_str, item.input.new_str, decoration, not expanded)
++    local inp = item.input
++    local old_t = inp.old_str or inp.oldString or inp.oldText
++    local new_t = inp.new_str or inp.newString or inp.newText
++    if type(old_t) == "string" and type(new_t) == "string" then
++      local diff_lines = M.get_diff_lines(old_t, new_t, decoration, not expanded)
++      add_diff_lines = true
++      vim.list_extend(lines, diff_lines)
++    elseif type(new_t) == "string" and (old_t == nil or old_t == vim.NIL) then
++      local diff_lines = M.get_diff_lines("", new_t, decoration, not expanded)
+       add_diff_lines = true
+       vim.list_extend(lines, diff_lines)
+     end
+   end
+-  if
+-    not add_diff_lines
+-    and message.acp_tool_call
+-    and message.acp_tool_call.rawInput
+-    and message.acp_tool_call.rawInput.oldString
+-  then
+-    local diff_lines = M.get_diff_lines(
+-      message.acp_tool_call.rawInput.oldString,
+-      message.acp_tool_call.rawInput.newString,
+-      decoration,
+-      not expanded
+-    )
+-    vim.list_extend(lines, diff_lines)
++  if not add_diff_lines and message.acp_tool_call and message.acp_tool_call.rawInput then
++    local raw = message.acp_tool_call.rawInput
++    local old_text = raw.oldString or raw.oldText or raw.old_str
++    local new_text = raw.newString or raw.newText or raw.new_str
++    if type(old_text) == "string" and type(new_text) == "string" then
++      local diff_lines = M.get_diff_lines(old_text, new_text, decoration, not expanded)
++      vim.list_extend(lines, diff_lines)
++      add_diff_lines = true
++    elseif type(new_text) == "string" and (old_text == nil or old_text == vim.NIL) then
++      -- Insertion-only (oldText can be nil in ACP)
++      local diff_lines = M.get_diff_lines("", new_text, decoration, not expanded)
++      vim.list_extend(lines, diff_lines)
++      add_diff_lines = true
++    elseif islist(raw.edits) and #raw.edits > 0 then
++      -- edits: [{ oldText, newText }] format used by some ACP agents
++      for _, edit in ipairs(raw.edits) do
++        local o = edit.oldText or edit.oldString or edit.old_str or ""
++        local n = edit.newText or edit.newString or edit.new_str or ""
++        if type(n) == "string" then
++          local diff_lines = M.get_diff_lines(type(o) == "string" and o or "", n, decoration, not expanded)
++          vim.list_extend(lines, diff_lines)
++          add_diff_lines = true
++        end
++      end
++    end
+   end
+   if
+     message.acp_tool_call
