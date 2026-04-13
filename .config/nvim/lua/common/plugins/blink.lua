@@ -190,7 +190,7 @@ cmp.setup({
 		},
 
 		-- Display a preview of the selected item on the current line
-		ghost_text = { enabled = true },
+		ghost_text = { enabled = false },
 	},
 	appearance = {
 		-- Sets the fallback highlight groups to nvim-cmp's highlight groups

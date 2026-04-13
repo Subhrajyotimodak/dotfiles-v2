@@ -56,12 +56,13 @@ end
 
 local function persistent_grep_string()
 	local builtin = require("telescope.builtin")
-	local action_state = require("telescope.actions.state")
 	local actions_mod = require("telescope.actions")
+	local search_term = (last_grep_string ~= "") and last_grep_string or vim.fn.expand("<cword>")
 	local opts = {
+		search = search_term,
 		attach_mappings = function(_, map)
 			local function save_and_select(prompt_bufnr)
-				last_grep_string = action_state.get_current_line(prompt_bufnr)
+				last_grep_string = search_term
 				actions_mod.select_default(prompt_bufnr)
 			end
 			map("i", "<CR>", save_and_select)
@@ -69,9 +70,6 @@ local function persistent_grep_string()
 			return true
 		end,
 	}
-	if last_grep_string ~= "" then
-		opts.search = last_grep_string
-	end
 	builtin.grep_string(opts)
 end
 
