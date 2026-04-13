@@ -22,7 +22,7 @@ codeium.setup({
 		enabled = true,
 		-- These are the defaults
 		-- Set to true if you never want completions to be shown automatically.
-		manual = false,
+		manual = true,
 		-- A mapping of filetype to true or false, to enable virtual text.
 		filetypes = {
 			Avante = false,
