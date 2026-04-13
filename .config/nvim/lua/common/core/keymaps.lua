@@ -56,14 +56,11 @@ keymap("n", "<leader>e", ":NeoTreeFloatToggle<cr>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files<cr>", opts)
 keymap("n", "<leader>fg", ":Telescope git_files<cr>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<cr>", opts)
-keymap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", opts) -- find string in current working directory as you type
-keymap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", opts) -- find string under cursor in current working directory
-keymap("n", "<leader><leader>", "<cmd>Guard fmt<cr>", opts) -- find string under cursor in current working directory
-keymap("n", "<leader>ac", "<cmd>Codeium Chat<cr>", opts) -- find string under cursor in current working directory
+keymap("n", "<leader>fs", "<cmd>lua require('common.plugins.telescope').persistent_live_grep()<cr>", opts) -- find string (persistent query)
+keymap("n", "<leader>fc", "<cmd>lua require('common.plugins.telescope').persistent_grep_string()<cr>", opts) -- find string under cursor (persistent query)
+keymap("n", "<leader><leader>", "<cmd>Guard fmt<cr>", opts)
 
--- CodeCompanion
-keymap("n", "<leader>ac", "<cmd>CodeCompanionChat<cr>", opts)
-keymap("n", "<leader>aa", "<cmd>CodeCompanionActions<cr>", opts)
+-- CodeCompanion (ac conflict removed; use ai for inline)
 keymap("n", "<leader>ai", "<cmd>CodeCompanionInline<cr>", opts)
 
 -- Avante model switching
@@ -71,18 +68,27 @@ keymap("n", "<leader>am", "<cmd>AvanteSwitchModel<cr>", opts)
 keymap("n", "<leader>aM", "<cmd>AvanteCurrentModel<cr>", opts)
 
 -- Avante RAG Service
-keymap("n", "<leader>ar", "<cmd>AvanteRagStatus<cr>", opts) -- Check RAG status
-keymap("n", "<leader>aR", "<cmd>AvanteRagIndexProject<cr>", opts) -- Index current project
+keymap("n", "<leader>ar", "<cmd>AvanteRagStatus<cr>", opts)
+keymap("n", "<leader>aR", "<cmd>AvanteRagIndexProject<cr>", opts)
 
--- Cursor review helpers
+-- Send selection to Claude CLI (cmux right pane)
+vim.keymap.set("v", "<D-S-a>", function()
+	require("common.ai.claude_send").send_selection_to_claude()
+end, { noremap = true, silent = true, desc = "Send selection to Claude CLI" })
+
+-- Fallback for terminals that do not emit <D-S-a>
+vim.keymap.set("v", "<leader>as", function()
+	require("common.ai.claude_send").send_selection_to_claude()
+end, { noremap = true, silent = true, desc = "Send selection to Claude CLI (fallback)" })
+
+-- Send selection to Cursor CLI (kept for Cursor workflow)
 vim.keymap.set("v", "<D-S-l>", function()
 	require("common.ai.review").send_selection_to_cursor()
 end, { noremap = true, silent = true, desc = "Send selection to Cursor CLI" })
-
--- Fallback for terminals that do not emit <D-S-l>
 vim.keymap.set("v", "<leader>cl", function()
 	require("common.ai.review").send_selection_to_cursor()
 end, { noremap = true, silent = true, desc = "Send selection to Cursor CLI (fallback)" })
 
--- Refresh Review (Mine) / Review (Agent) from Cursor DB and git
-vim.keymap.set("n", "<leader>ay", "<cmd>AiSync<cr>", { noremap = true, silent = true, desc = "AI sync: update Review list and refresh Neo-tree" })
+-- Refresh AI sync
+vim.keymap.set("n", "<leader>ay", "<cmd>AiSync<cr>", { noremap = true, silent = true, desc = "AI sync: refresh Neo-tree" })
+
