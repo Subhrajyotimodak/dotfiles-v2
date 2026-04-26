@@ -18,6 +18,8 @@ ft("html,htmldjango,typescript,javascript,typescriptreact,javascriptreact,svelte
 
 ft("python"):fmt("black")
 
+ft("go"):fmt("goimports")
+
 ft("json"):fmt("prettier"):lint({
 	cmd = "misspell",
 	stdin = true,

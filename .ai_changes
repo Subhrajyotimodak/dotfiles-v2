@@ -1,0 +1,5 @@
+.config/kitty/kitty.conf
+.config/nvim/lua/common/ai/cursor-agent.lua
+.config/nvim/lua/common/core/keymaps.lua
+.config/nvim/lua/common/plugins/neo-tree.lua
+.zshrc

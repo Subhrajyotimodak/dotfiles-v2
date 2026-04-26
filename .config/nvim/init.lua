@@ -13,7 +13,7 @@ require("common.plugins.terminal-fix")
 
 -- require("common.plugins.cmp")
 require("common.plugins.blink")
-require("common.plugins.blink-debug")
+-- require("common.plugins.blink-debug")
 require("common.plugins.comment")
 require("common.plugins.lualine")
 require("common.plugins.neo-tree")
@@ -30,6 +30,7 @@ require("common.plugins.indentation-line")
 require("common.plugins.symbol-outline")
 require("common.plugins.dressing")
 require("common.plugins.hologram")
+require("common.plugins.render-markdown")
 
 require("common.language-server-protocol.mason")
 require("common.language-server-protocol.lspconfig")
@@ -37,10 +38,17 @@ require("common.language-server-protocol.lspsaga")
 require("common.language-server-protocol.guard")
 
 -- require("common.plugins.goose")
-
-
--- require("common.ai.avante")
--- require("common.ai.mcphub")
--- require("common.ai.vectorcode")
--- require("common.ai.codecompanion")
 require("common.plugins.codeium")
+-- require("common.plugins.mcphub")
+-- require("common.plugins.avante")
+-- require("common.plugins.claudecode")
+
+-- AI Providers
+-- require("common.ai.cursor-agent")
+
+-- Review: autoread, gitsigns refresh, AiSync command
+local review_ok, review = pcall(require, "common.ai.review")
+if review_ok and review and review.setup then
+	review.setup()
+end
+

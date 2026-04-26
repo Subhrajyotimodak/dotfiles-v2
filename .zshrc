@@ -1,40 +1,43 @@
-# echo '''
-# 	  █████████       ███  ██████████  █████                         █████      ███████████   
-# 	 ███░░░░░███     ░░░  ░███░░░░░░█ ░░███                         ░░███      ░░███░░░░░███  
-# 	░███    ░░░      █████░███     ░  ███████   ████████  █████ ████ ░███ █████ ░███    ░███  
-# 	░░█████████     ░░███ ░█████████ ░░░███░   ░░███░░███░░███ ░███  ░███░░███  ░██████████   
-# 	 ░░░░░░░░███     ░███ ░░░░░░░░███  ░███     ░███ ░░░  ░███ ░███  ░██████░   ░███░░░░░███  
-# 	 ███    ░███     ░███  ███   ░███  ░███ ███ ░███      ░███ ░███  ░███░░███  ░███    ░███  
-# 	░░█████████      ░███ ░░████████   ░░█████  █████     ░░███████  ████ █████ █████   █████ 
-# 	 ░░░░░░░░░       ░███  ░░░░░░░░     ░░░░░  ░░░░░       ░░░░░███ ░░░░ ░░░░░ ░░░░░   ░░░░░  
-# 	             ███ ░███                                  ███ ░███                           
-# 	            ░░██████                                  ░░██████                            
-# 	             ░░░░░░                                    ░░░░░░                             
-# 	'''
-
 echo '''
-  ██████  ▄▄▄██▀▀▀██████ ▄▄▄█████▓ ██▀███ ▓██   ██▓ ██ ▄█▀ ██▀███  
-▒██    ▒    ▒██ ▒██    ▒ ▓  ██▒ ▓▒▓██ ▒ ██▒▒██  ██▒ ██▄█▒ ▓██ ▒ ██▒
-░ ▓██▄      ░██ ░ ▓██▄   ▒ ▓██░ ▒░▓██ ░▄█ ▒ ▒██ ██░▓███▄░ ▓██ ░▄█ ▒
-  ▒   ██▒▓██▄██▓  ▒   ██▒░ ▓██▓ ░ ▒██▀▀█▄   ░ ▐██▓░▓██ █▄ ▒██▀▀█▄  
-▒██████▒▒ ▓███▒ ▒██████▒▒  ▒██▒ ░ ░██▓ ▒██▒ ░ ██▒▓░▒██▒ █▄░██▓ ▒██▒
-▒ ▒▓▒ ▒ ░ ▒▓▒▒░ ▒ ▒▓▒ ▒ ░  ▒ ░░   ░ ▒▓ ░▒▓░  ██▒▒▒ ▒ ▒▒ ▓▒░ ▒▓ ░▒▓░
-░ ░▒  ░ ░ ▒ ░▒░ ░ ░▒  ░ ░    ░      ░▒ ░ ▒░▓██ ░▒░ ░ ░▒ ▒░  ░▒ ░ ▒░
-░  ░  ░   ░ ░ ░ ░  ░  ░    ░        ░░   ░ ▒ ▒ ░░  ░ ░░ ░   ░░   ░ 
-      ░   ░   ░       ░              ░     ░ ░     ░  ░      ░     
-                                           ░ ░                     
-'''
+	  █████████       ███  ██████████  █████                         █████      ███████████
+	 ███░░░░░███     ░░░  ░███░░░░░░█ ░░███                         ░░███      ░░███░░░░░███
+	░███    ░░░      █████░███     ░  ███████   ████████  █████ ████ ░███ █████ ░███    ░███
+	░░█████████     ░░███ ░█████████ ░░░███░   ░░███░░███░░███ ░███  ░███░░███  ░██████████
+	 ░░░░░░░░███     ░███ ░░░░░░░░███  ░███     ░███ ░░░  ░███ ░███  ░██████░   ░███░░░░░███
+	 ███    ░███     ░███  ███   ░███  ░███ ███ ░███      ░███ ░███  ░███░░███  ░███    ░███
+	░░█████████      ░███ ░░████████   ░░█████  █████     ░░███████  ████ █████ █████   █████
+	 ░░░░░░░░░       ░███  ░░░░░░░░     ░░░░░  ░░░░░       ░░░░░███ ░░░░ ░░░░░ ░░░░░   ░░░░░
+	             ███ ░███                                  ███ ░███
+	            ░░██████                                  ░░██████
+	             ░░░░░░                                    ░░░░░░
+	'''
+
+# echo '''
+#   ██████  ▄▄▄██▀▀▀██████ ▄▄▄█████▓ ██▀███ ▓██   ██▓ ██ ▄█▀ ██▀███
+# ▒██    ▒    ▒██ ▒██    ▒ ▓  ██▒ ▓▒▓██ ▒ ██▒▒██  ██▒ ██▄█▒ ▓██ ▒ ██▒
+# ░ ▓██▄      ░██ ░ ▓██▄   ▒ ▓██░ ▒░▓██ ░▄█ ▒ ▒██ ██░▓███▄░ ▓██ ░▄█ ▒
+#   ▒   ██▒▓██▄██▓  ▒   ██▒░ ▓██▓ ░ ▒██▀▀█▄   ░ ▐██▓░▓██ █▄ ▒██▀▀█▄
+# ▒██████▒▒ ▓███▒ ▒██████▒▒  ▒██▒ ░ ░██▓ ▒██▒ ░ ██▒▓░▒██▒ █▄░██▓ ▒██▒
+# ▒ ▒▓▒ ▒ ░ ▒▓▒▒░ ▒ ▒▓▒ ▒ ░  ▒ ░░   ░ ▒▓ ░▒▓░  ██▒▒▒ ▒ ▒▒ ▓▒░ ▒▓ ░▒▓░
+# ░ ░▒  ░ ░ ▒ ░▒░ ░ ░▒  ░ ░    ░      ░▒ ░ ▒░▓██ ░▒░ ░ ░▒ ▒░  ░▒ ░ ▒░
+# ░  ░  ░   ░ ░ ░ ░  ░  ░    ░        ░░   ░ ▒ ▒ ░░  ░ ░░ ░   ░░   ░
+#       ░   ░   ░       ░              ░     ░ ░     ░  ░      ░
+#                                            ░ ░
+# '''
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-source ~/.zsh/zsh-syntax-highlighting/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
-source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
-source ~/.zsh/git-ai-commit/git-ai-commit.plugin.zsh
+source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh"
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+# source ~/.zsh/git-ai-commit/git-ai-commit.plugin.zsh
 
+alias github-switch="$HOME/.config/github-switch.sh"
+alias ghs='github-switch'  # optional short alias
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -42,7 +45,7 @@ source ~/.zsh/git-ai-commit/git-ai-commit.plugin.zsh
 export ZSH="$HOME/.oh-my-zsh"
 
 # Load secrets
-source ~/.zsh_secrets
+# source ~/.zsh_secrets
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -110,7 +113,7 @@ source ~/.zsh_secrets
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search git-ai-commit)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -139,6 +142,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# Poetry (install script puts it here)
+export PATH="$HOME/Library/Application Support/pypoetry/venv/bin:$PATH"
+
 export PATH=~/flutter/bin:$PATH
 export FLUTTER_ROOT=flutter
 #export PATH=$HOME/.cargo/bin
@@ -165,7 +171,7 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH=~/java-language-server/jdt-language-server-1.9.0/bin:$PATH
 export PATH=~/.pyenv/versions/2.7.18/bin:$PATH
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -244,6 +250,19 @@ unset __conda_setup
 export PATH="/opt/homebrew/opt/icu4c@76/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c@76/sbin:$PATH"
 
+# dotfiles local scripts
+if [ -d "$HOME/dotfiles/bin" ]; then
+  case ":$PATH:" in
+    *":$HOME/dotfiles/bin:"*) ;;
+    *) export PATH="$HOME/dotfiles/bin:$PATH" ;;
+  esac
+fi
+
 alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 
 git-update () {git stash && git pull && git pull origin ${1:-'development'} && git push && git stash pop}
+export PATH="$HOME/.local/bin:$PATH"
+work() { ~/.config/cmux/work.sh "${1:-.}" }
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

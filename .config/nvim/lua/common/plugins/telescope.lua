@@ -14,8 +14,11 @@ end
 
 -- configure telescope
 telescope.setup({
-	-- configure custom mappings
 	defaults = {
+		-- Avoid ft_to_lang nil error (Neovim 0.10+ treesitter API change); use regex/syntax preview instead
+		preview = {
+			treesitter = { enable = false },
+		},
 		mappings = {
 			i = {
 				["<C-k>"] = actions.move_selection_previous, -- move to prev result
@@ -29,3 +32,49 @@ telescope.setup({
 telescope.load_extension("media_files")
 telescope.load_extension("monorepo")
 --[[ telescope.load_extension("fzf") ]]
+
+-- Persistent grep: remembers the last query for the session
+local last_grep_string = ""
+
+local function persistent_live_grep()
+	local builtin = require("telescope.builtin")
+	local action_state = require("telescope.actions.state")
+	local actions_mod = require("telescope.actions")
+	builtin.live_grep({
+		default_text = last_grep_string,
+		attach_mappings = function(_, map)
+			local function save_and_select(prompt_bufnr)
+				last_grep_string = action_state.get_current_line(prompt_bufnr)
+				actions_mod.select_default(prompt_bufnr)
+			end
+			map("i", "<CR>", save_and_select)
+			map("n", "<CR>", save_and_select)
+			return true
+		end,
+	})
+end
+
+local function persistent_grep_string()
+	local builtin = require("telescope.builtin")
+	local actions_mod = require("telescope.actions")
+	local search_term = (last_grep_string ~= "") and last_grep_string or vim.fn.expand("<cword>")
+	local opts = {
+		search = search_term,
+		attach_mappings = function(_, map)
+			local function save_and_select(prompt_bufnr)
+				last_grep_string = search_term
+				actions_mod.select_default(prompt_bufnr)
+			end
+			map("i", "<CR>", save_and_select)
+			map("n", "<CR>", save_and_select)
+			return true
+		end,
+	}
+	builtin.grep_string(opts)
+end
+
+-- Export for use in keymaps
+return {
+	persistent_live_grep = persistent_live_grep,
+	persistent_grep_string = persistent_grep_string,
+}

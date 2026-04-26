@@ -22,9 +22,12 @@ codeium.setup({
 		enabled = true,
 		-- These are the defaults
 		-- Set to true if you never want completions to be shown automatically.
-		manual = false,
+		manual = true,
 		-- A mapping of filetype to true or false, to enable virtual text.
-		filetypes = {},
+		filetypes = {
+			Avante = false,
+			AvanteInput = false,
+		},
 		-- Whether to enable virtual text of not for filetypes not specifically listed above.
 		default_filetype_enabled = true,
 		-- How long to wait (in ms) before requesting completions after typing stops.

@@ -58,11 +58,11 @@ local packer_install = function(use)
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
 
-	-- autocompletion
+	-- autocompletion (blink downloads prebuilts on first load; remove run to avoid PackerSync cargo failures)
 	use({
 		'saghen/blink.cmp',
-		requires = { 'rafamadriz/friendly-snippets' },
-		run = 'cargo build --release'
+		requires = { 'rafamadriz/friendly-snippets', 'Saghen/blink.compat',--[[  'Kaiser-Yang/blink-cmp-avante' ]] },
+		tag = 'v1.9.1',
 	})
 	-- use("hrsh7th/nvim-cmp") -- completion plugin
 	-- use("hrsh7th/cmp-buffer") -- source for text in buffer
@@ -115,14 +115,8 @@ use({
 	}) -- enhanced lsp uis
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
 
-	-- treesitter configuration
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-			ts_update()
-		end,
-	})
+	-- treesitter configuration (run :TSUpdate after install/update to fetch parsers)
+	use("nvim-treesitter/nvim-treesitter")
 
 	-- auto closing
 	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
@@ -192,24 +186,30 @@ use({
 	-----------------
 	-- AI Features --
 	-----------------
-	-- Avante
-	use({
-		"yetone/avante.nvim",
-		branch = "main",
-		run = "make",
-		dependencies = {
-			-- Required dependencies
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			"MeanderingProgrammer/render-markdown.nvim",
-			-- Optional dependencies (good to have)
-			"hrsh7th/nvim-cmp",
-			"nvim-tree/nvim-web-devicons", -- or use 'echasnovski/mini.icons'
-			"HakonHarnes/img-clip.nvim",
-			"stevearc/dressing.nvim", -- for enhanced input UI
-			"folke/snacks.nvim", -- for modern input UI
-		},
-	})
+	-- MCP Hub: manage MCP servers, unified endpoint for Avante ACP agents (Claude Code compatible)
+	-- use({
+	-- 	"ravitemer/mcphub.nvim",
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- 	build = "npm install -g mcp-hub@latest",
+	-- })
+	-- Avante (AI assistant with ACP/Zen Mode)
+	-- use({
+	-- 	"yetone/avante.nvim",
+	-- 	branch = "main",
+	-- 	run = {
+	-- 		"make",
+	-- 		function(plugin)
+	-- 			local patch = vim.fn.stdpath("config") .. "/patches/avante-diff-view.patch"
+	-- 			local script = vim.fn.stdpath("config") .. "/scripts/apply-avante-patch.sh"
+	-- 			if vim.fn.filereadable(patch) == 1 and plugin and plugin.install_path then
+	-- 				vim.fn.system({ "bash", script, plugin.install_path })
+	-- 			end
+	-- 		end,
+	-- 	},
+
+	-- use({
+	-- 	"xTacobaco/cursor-agent.nvim",
+	-- })
 
 	-- Code Companion
 	-- use({
@@ -219,18 +219,18 @@ use({
 	--    },
 	-- })
 
-	-- mcphub.nvim
-	use({
-		"ravitemer/mcphub.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
-		run = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
-	})
 	use({ "Exafunction/windsurf.nvim", requires = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" } })
 	-- use({
 	-- 	"davidyz/vectorcode",
 	-- })
+
+	use({
+		"coder/claudecode.nvim",
+		requires= {"folke/snacks.nvim"}
+	})
+
+
+
 end
 
 -- auto install packer if not installed

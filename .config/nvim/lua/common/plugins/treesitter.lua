@@ -35,6 +35,10 @@ treesitter.setup({
 		"dockerfile",
 		"nginx",
 		"gitignore",
+		"go",
+		"gomod",
+		"gowork",
+		"gosum",
 	},
 	-- auto install above language parsers
 	auto_install = true,

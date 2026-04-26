@@ -20,6 +20,7 @@ return function(capabilities, on_attach)
 		marksman = marksman(capabilities, on_attach),
 		ts_ls = typescript(capabilities, on_attach),
 		mdx_analyzer = mdx_analyzer(capabilities, on_attach),
+		gopls = common(capabilities, on_attach),
 	}
 end
 
